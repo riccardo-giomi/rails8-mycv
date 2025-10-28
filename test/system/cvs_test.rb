@@ -18,16 +18,16 @@ class CvsTest < ApplicationSystemTestCase
 
   test "should create cv" do
     visit cvs_url
-    click_on "New cv"
+    click_on "new-cv-button"
 
-    fill_in "Base filename", with: @cv.base_filename
+    fill_in "cv_base_filename", with: @cv.base_filename
     fill_in "Email address", with: @cv.email_address
-    fill_in "Intro line", with: @cv.intro_line
-    fill_in "Intro text", with: @cv.intro_text
+    fill_in "cv_intro_line", with: @cv.intro_line
+    fill_in "cv_intro_text", with: @cv.intro_text
     fill_in "Language", with: @cv.language
     fill_in "Name", with: @cv.name
     fill_in "Notes", with: @cv.notes
-    click_on "Create Cv"
+    click_on "Save"
 
     assert_text "Cv was successfully created"
     click_on "Back"
@@ -37,15 +37,15 @@ class CvsTest < ApplicationSystemTestCase
     visit cv_url(@cv)
     click_on "Edit this cv", match: :first
 
-    fill_in "Base filename", with: @cv.base_filename
+    fill_in "cv_base_filename", with: @cv.base_filename
     fill_in "Email address", with: @cv.email_address
-    fill_in "Intro line", with: @cv.intro_line
-    fill_in "Intro text", with: @cv.intro_text
+    fill_in "cv_intro_line", with: @cv.intro_line
+    fill_in "cv_intro_text", with: @cv.intro_text
     fill_in "Language", with: @cv.language
     fill_in "Name", with: @cv.name
     fill_in "Notes", with: @cv.notes
 
-    click_on "Update Cv"
+    click_on "Save"
 
     assert_text "Cv was successfully updated"
     click_on "Back"

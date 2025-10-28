@@ -5,9 +5,44 @@
 }
 
 .button {
-  @apply rounded-full p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 inline-block font-medium;
+  @apply align-middle rounded-lg p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 inline-block font-medium cursor-pointer;
 }
 
-.button_red {
-  @apply rounded-full p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 inline-block font-medium;
+.button-red {
+  @apply align-middle rounded-lg p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 inline-block font-medium cursor-pointer;
+}
+
+.button-green {
+  @apply inline-block align-middle font-medium cursor-pointer rounded-lg p-2 text-green-700 bg-gray-200 hover:text-white hover:bg-green-700;
+}
+
+.icon-button {
+  @apply rounded-full p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 inline-block font-medium cursor-pointer;
+}
+
+.icon-button-red {
+  @apply rounded-full p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 inline-block font-medium cursor-pointer;
+}
+
+.input-field {
+  @apply block shadow-sm rounded-md border px-3 py-2 mt-2 w-full
+         border-gray-400 focus:outline-blue-600;
+}
+
+.small-label {
+  @apply sm:text-sm sm:font-semibold;
+}
+
+.small-input-field {
+  @apply block shadow-sm rounded-md border px-1 py-1 mt-1 w-full sm:text-sm
+         border-gray-400 focus:outline-blue-600;
+}
+
+.field_with_errors {
+  @apply w-full;
+}
+
+.field_with_errors .input-field,
+.field_with_errors .small-input-field {
+  @apply border-red-400 focus:outline-red-600;
 }
