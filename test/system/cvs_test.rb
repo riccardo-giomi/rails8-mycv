@@ -7,7 +7,12 @@ class CvsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit cvs_url
-    assert_selector "h1", text: "Cvs"
+    assert_selector "h1", text: "CVs"
+    assert_selector "p", text: @cv.name
+    assert_selector "p", text: @cv.intro_line
+    assert_selector "span", text: @cv.email_address
+    assert_selector "span", text: "#{@cv.base_filename}.*"
+    assert_selector "span", text: @cv.language
   end
 
   test "should create cv" do

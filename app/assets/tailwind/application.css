@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.pill {
+  @apply p-1 min-w-12 rounded-full text-sm border border-gray-400 bg-gray-100 text-gray-500;
+}
+
+.button {
+  @apply rounded-full p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 inline-block font-medium;
+}
+
+.button_red {
+  @apply rounded-full p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 inline-block font-medium;
+}
