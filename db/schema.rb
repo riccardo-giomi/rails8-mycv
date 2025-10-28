@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_28_102253) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_28_150831) do
   create_table "cvs", force: :cascade do |t|
     t.string "name", null: false
     t.string "email_address", null: false
@@ -20,5 +20,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_28_102253) do
     t.string "language", default: "en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "notes"
   end
 end

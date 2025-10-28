@@ -17,7 +17,17 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create cv" do
     assert_difference("Cv.count") do
-      post cvs_url, params: { cv: { base_filename: @cv.base_filename, email_address: @cv.email_address, intro_line: @cv.intro_line, intro_text: @cv.intro_text, language: @cv.language, name: @cv.name } }
+      post cvs_url, params: {
+        cv: {
+          base_filename: "curriculum.es",
+          email_address: "me@example.org",
+          intro_line: " Barrendero profesional",
+          intro_text: "Yo Barro, Professionalmente.",
+          language: "es",
+          name: "El Barrendero",
+          notes: "Me gusta mucho barrer!"
+        }
+      }
     end
 
     assert_redirected_to cv_url(Cv.last)
@@ -34,7 +44,17 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update cv" do
-    patch cv_url(@cv), params: { cv: { base_filename: @cv.base_filename, email_address: @cv.email_address, intro_line: @cv.intro_line, intro_text: @cv.intro_text, language: @cv.language, name: @cv.name } }
+    patch cv_url(@cv), params: {
+      cv: {
+        base_filename: "curriculum.es",
+        email_address: "me@example.org",
+        intro_line: " Barrendero profesional",
+        intro_text: "Yo Barro, Professionalmente.",
+        language: "es",
+        name: "El Barrendero",
+        notes: "Me gusta mucho barrer!"
+      }
+    }
     assert_redirected_to cv_url(@cv)
   end
 

@@ -7,6 +7,7 @@ one:
   intro_text: I'm good at testing cv applications
   base_filename: john-doe
   language: en
+  notes: English CV to appear competent
 
 two:
   name: Jane D'oh!
@@ -15,3 +16,4 @@ two:
   intro_text: intro-text, ma in Italiano!
   base_filename: cv.it
   language: it
+  notes: CV in Italiano

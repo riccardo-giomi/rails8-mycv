@@ -13,6 +13,7 @@ class CvsTest < ApplicationSystemTestCase
     assert_selector "span", text: @cv.email_address
     assert_selector "span", text: "#{@cv.base_filename}.*"
     assert_selector "span", text: @cv.language
+    assert_selector "p", text: @cv.notes
   end
 
   test "should create cv" do
@@ -25,6 +26,7 @@ class CvsTest < ApplicationSystemTestCase
     fill_in "Intro text", with: @cv.intro_text
     fill_in "Language", with: @cv.language
     fill_in "Name", with: @cv.name
+    fill_in "Notes", with: @cv.notes
     click_on "Create Cv"
 
     assert_text "Cv was successfully created"
@@ -41,6 +43,8 @@ class CvsTest < ApplicationSystemTestCase
     fill_in "Intro text", with: @cv.intro_text
     fill_in "Language", with: @cv.language
     fill_in "Name", with: @cv.name
+    fill_in "Notes", with: @cv.notes
+
     click_on "Update Cv"
 
     assert_text "Cv was successfully updated"

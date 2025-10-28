@@ -60,6 +60,6 @@ class CvsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cv_params
-      params.expect(cv: [ :name, :email_address, :intro_line, :intro_text, :base_filename, :language ])
+      params.expect(cv: [ :name, :email_address, :intro_line, :intro_text, :base_filename, :language, :notes ])
     end
 end
