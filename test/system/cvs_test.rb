@@ -1,0 +1,51 @@
+require "application_system_test_case"
+
+class CvsTest < ApplicationSystemTestCase
+  setup do
+    @cv = cvs(:one)
+  end
+
+  test "visiting the index" do
+    visit cvs_url
+    assert_selector "h1", text: "Cvs"
+  end
+
+  test "should create cv" do
+    visit cvs_url
+    click_on "New cv"
+
+    fill_in "Base filename", with: @cv.base_filename
+    fill_in "Email address", with: @cv.email_address
+    fill_in "Intro line", with: @cv.intro_line
+    fill_in "Intro text", with: @cv.intro_text
+    fill_in "Language", with: @cv.language
+    fill_in "Name", with: @cv.name
+    click_on "Create Cv"
+
+    assert_text "Cv was successfully created"
+    click_on "Back"
+  end
+
+  test "should update Cv" do
+    visit cv_url(@cv)
+    click_on "Edit this cv", match: :first
+
+    fill_in "Base filename", with: @cv.base_filename
+    fill_in "Email address", with: @cv.email_address
+    fill_in "Intro line", with: @cv.intro_line
+    fill_in "Intro text", with: @cv.intro_text
+    fill_in "Language", with: @cv.language
+    fill_in "Name", with: @cv.name
+    click_on "Update Cv"
+
+    assert_text "Cv was successfully updated"
+    click_on "Back"
+  end
+
+  test "should destroy Cv" do
+    visit cv_url(@cv)
+    accept_confirm { click_on "Destroy this cv", match: :first }
+
+    assert_text "Cv was successfully destroyed"
+  end
+end

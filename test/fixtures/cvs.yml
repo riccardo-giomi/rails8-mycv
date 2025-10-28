@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: John Doe
+  email_address: john-doe@example.org
+  intro_line: Hello, my name is John Doe
+  intro_text: I'm good at testing cv applications
+  base_filename: john-doe
+  language: en
+
+two:
+  name: Jane D'oh!
+  email_address: j-d@example.org
+  intro_line: intro-line, ma in Italiano!
+  intro_text: intro-text, ma in Italiano!
+  base_filename: cv.it
+  language: it

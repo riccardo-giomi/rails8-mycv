@@ -1,0 +1,47 @@
+<%= form_with(model: cv, class: "contents") do |form| %>
+  <% if cv.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(cv.errors.count, "error") %> prohibited this cv from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% cv.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cv.errors[:name].none?, "border-red-400 focus:outline-red-600": cv.errors[:name].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cv.errors[:email_address].none?, "border-red-400 focus:outline-red-600": cv.errors[:email_address].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :intro_line %>
+    <%= form.text_field :intro_line, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cv.errors[:intro_line].none?, "border-red-400 focus:outline-red-600": cv.errors[:intro_line].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :intro_text %>
+    <%= form.text_field :intro_text, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cv.errors[:intro_text].none?, "border-red-400 focus:outline-red-600": cv.errors[:intro_text].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :base_filename %>
+    <%= form.text_field :base_filename, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cv.errors[:base_filename].none?, "border-red-400 focus:outline-red-600": cv.errors[:base_filename].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :language %>
+    <%= form.text_field :language, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cv.errors[:language].none?, "border-red-400 focus:outline-red-600": cv.errors[:language].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
