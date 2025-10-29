@@ -29,8 +29,7 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update CV" do
-    patch cv_url(@cv), params: {
-      cv: {
+    attributes = {
         base_filename: "curriculum.es",
         email_address: "me@example.org",
         intro_line: " Barrendero profesional",
@@ -39,8 +38,52 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
         name: "El Barrendero",
         notes: "Me gusta mucho barrer!"
       }
-    }
+
+    patch cv_url(@cv), params: { cv: attributes }
+
+    assert_attribute_values(@cv.reload, attributes)
+
     assert_redirected_to edit_cv_url(@cv)
+  end
+
+  test "should allow to add empty contacts" do
+    assert_difference("@cv.contacts.count", 1) do
+      patch cv_url(@cv), params: { cv: @cv.attributes, add_contact: 1 }
+    end
+
+    assert_redirected_to edit_cv_url(@cv)
+  end
+
+  test "should allow to remove a contact" do
+    @cv = cvs(:two)
+
+    assert_difference("@cv.contacts.count", -1) do
+      patch cv_url(@cv), params: { cv: @cv.attributes, delete_contact: @cv.contacts.last.id }
+    end
+
+    assert_redirected_to edit_cv_url(@cv)
+  end
+
+  test "should update contacts at the same time" do
+    @cv = cvs(:two)
+
+    contact_attributes = @cv.contacts.first.attributes
+    contact_attributes["contact_type"] = "phone"
+    contact_attributes["value"] = "0987654321"
+
+    cv_attributes = @cv.attributes
+    cv_attributes["name"] = "Changed Name"
+    cv_attributes["email_address"] = "Changed Email"
+
+    attributes = cv_attributes.dup
+    attributes["contacts_attributes"] = [ contact_attributes ]
+
+    patch cv_url(@cv), params: { cv: attributes }
+
+    assert_redirected_to edit_cv_url(@cv)
+
+    assert_attribute_values(@cv.reload, cv_attributes)
+    assert_attribute_values(@cv.contacts.first, contact_attributes)
   end
 
   test "should destroy cv" do

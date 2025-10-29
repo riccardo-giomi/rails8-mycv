@@ -38,7 +38,7 @@ class CvsTest < ApplicationSystemTestCase
     click_on "Save"
 
     assert_text "CV saved."
-    click_on "Cancel"
+    click_on "Back"
   end
 
   test "should destroy CV" do

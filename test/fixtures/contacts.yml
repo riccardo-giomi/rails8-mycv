@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_type: linkedin
+  value: linkedin.example.org
+  position: 1
+  cv: two
+
+two:
+  contact_type: github
+  value: github.example.org
+  position: 2
+  cv: two

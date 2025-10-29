@@ -34,7 +34,7 @@
 }
 
 .small-input-field {
-  @apply block shadow-sm rounded-md border px-1 py-1 mt-1 w-full sm:text-sm
+  @apply block shadow-sm rounded-md border px-1 py-1 mt-1 sm:text-sm
          border-gray-400 focus:outline-blue-600;
 }
 

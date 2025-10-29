@@ -19,6 +19,9 @@ class CvsController < ApplicationController
   end
 
   def update
+    @cv.delete_contact(params[:delete_contact]) if params[:delete_contact]
+    @cv.add_contact if params[:add_contact]
+
     respond_to do |format|
       if @cv.update(cv_params)
         format.html { redirect_to edit_cv_path(@cv), notice: "CV saved.", status: :see_other }
@@ -37,13 +40,25 @@ class CvsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cv
-      @cv = Cv.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def cv_params
-      params.expect(cv: [ :name, :email_address, :intro_line, :intro_text, :base_filename, :language, :notes ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cv
+    @cv = Cv.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cv_params
+    params.expect(
+      cv: [
+        :name,
+        :email_address,
+        :intro_line,
+        :intro_text,
+        :base_filename,
+        :language,
+        :notes,
+        contacts_attributes: [ %i[id contact_type value] ]
+      ]
+    )
+  end
 end
