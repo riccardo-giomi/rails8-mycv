@@ -1,9 +1,9 @@
 require "test_helper"
 
 class CvTest < ActiveSupport::TestCase
-  test "Requires some attributes" do
+  test "Can have all attributes empty" do
     cv = Cv.new
 
-    assert cv.invalid?
+    assert cv.valid?
   end
 end

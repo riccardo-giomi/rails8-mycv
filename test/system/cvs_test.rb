@@ -16,24 +16,14 @@ class CvsTest < ApplicationSystemTestCase
     assert_selector "p", text: @cv.notes
   end
 
-  test "should create cv" do
+  test "should create an empty CV" do
     visit cvs_url
     click_on "new-cv-button"
 
-    fill_in "cv_base_filename", with: @cv.base_filename
-    fill_in "Email address", with: @cv.email_address
-    fill_in "cv_intro_line", with: @cv.intro_line
-    fill_in "cv_intro_text", with: @cv.intro_text
-    fill_in "Language", with: @cv.language
-    fill_in "Name", with: @cv.name
-    fill_in "Notes", with: @cv.notes
-    click_on "Save"
-
-    assert_text "Cv was successfully created"
-    click_on "Back"
+    assert_text "CV was successfully created"
   end
 
-  test "should update Cv" do
+  test "should update CV" do
     visit cv_url(@cv)
     click_on "Edit this cv", match: :first
 
@@ -47,14 +37,14 @@ class CvsTest < ApplicationSystemTestCase
 
     click_on "Save"
 
-    assert_text "Cv was successfully updated"
-    click_on "Back"
+    assert_text "CV saved."
+    click_on "Cancel"
   end
 
-  test "should destroy Cv" do
+  test "should destroy CV" do
     visit cv_url(@cv)
     accept_confirm { click_on "Destroy this cv", match: :first }
 
-    assert_text "Cv was successfully destroyed"
+    assert_text "CV was successfully destroyed"
   end
 end

@@ -10,30 +10,15 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_cv_url
-    assert_response :success
+  test "create requests should create an empty CV and redirect to index" do
+    assert_difference("Cv.count") { post cvs_url }
+    assert_redirected_to cvs_url
+
+    assert Cv.last.name.blank?
+    assert Cv.last.email_address.blank?
   end
 
-  test "should create cv" do
-    assert_difference("Cv.count") do
-      post cvs_url, params: {
-        cv: {
-          base_filename: "curriculum.es",
-          email_address: "me@example.org",
-          intro_line: " Barrendero profesional",
-          intro_text: "Yo Barro, Professionalmente.",
-          language: "es",
-          name: "El Barrendero",
-          notes: "Me gusta mucho barrer!"
-        }
-      }
-    end
-
-    assert_redirected_to cv_url(Cv.last)
-  end
-
-  test "should show cv" do
+  test "should show CV" do
     get cv_url(@cv)
     assert_response :success
   end
@@ -43,7 +28,7 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update cv" do
+  test "should update CV" do
     patch cv_url(@cv), params: {
       cv: {
         base_filename: "curriculum.es",
@@ -55,7 +40,7 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
         notes: "Me gusta mucho barrer!"
       }
     }
-    assert_redirected_to cv_url(@cv)
+    assert_redirected_to edit_cv_url(@cv)
   end
 
   test "should destroy cv" do
