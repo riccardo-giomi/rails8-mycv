@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_28_150831) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_29_105200) do
   create_table "cvs", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email_address", null: false
+    t.string "name"
+    t.string "email_address"
+    t.string "notes"
     t.string "intro_line"
-    t.string "intro_text"
-    t.string "base_filename", default: "cv.en"
-    t.string "language", default: "en"
+    t.text "intro_text"
+    t.string "base_filename"
+    t.string "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "notes"
   end
 end
