@@ -54,4 +54,28 @@ class CvTest < ActiveSupport::TestCase
     assert_equal second_position, cv.education_items.reload.first.position
     assert_difference("cv.education_items.count", -1) { cv.delete_education_item(cv.education_items.first) }
   end
+
+  test "#add_language adds a new empty Language with updated position" do
+    language = nil
+    cv = Cv.new
+
+    assert_difference("cv.languages.size", 1) { language = cv.add_language }
+
+    assert language.name.blank?
+    assert language.level.blank?
+    assert_equal 1, language.position
+
+    assert_difference("cv.languages.size", 1) { language = cv.add_language }
+    assert_equal 2, language.position
+  end
+
+  test "#delete_language destroys a Language record but does not update the other positions" do
+    cv = cvs(:two)
+    first_id = cv.languages.first.id
+    second_position = cv.languages.second.position
+
+    assert_difference("cv.languages.count", -1) { cv.delete_language(first_id) }
+    assert_equal second_position, cv.languages.reload.first.position
+    assert_difference("cv.languages.count", -1) { cv.delete_language(cv.languages.first) }
+  end
 end

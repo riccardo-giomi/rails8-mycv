@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Italian
+  level: native
+  cv: two
+  position: 1
+
+two:
+  name: English
+  level: professional
+  cv: two
+  position: 2

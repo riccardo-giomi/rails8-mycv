@@ -34,4 +34,14 @@ if Rails.env.development?
     date:     "2007",
     position: 1
   )
+  cv.languages << Language.create(
+    name:     "English",
+    level:    "professional",
+    position: 1
+  )
+  cv.languages << Language.create(
+    name:     "Italian",
+    level:    "native",
+    position: 2
+  )
 end
