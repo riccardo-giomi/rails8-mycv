@@ -28,4 +28,10 @@ if Rails.env.development?
     value:        "linkedin.com/in/riccardo-giomi-663303188",
     position:     2
   )
+  cv.education_items << EducationItem.create(
+    name:     "Batchelor degree in Computer Engineering",
+    location: "School of Engineering, University of Pisa, Italy.",
+    date:     "2007",
+    position: 1
+  )
 end

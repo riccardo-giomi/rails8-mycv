@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Diploma
+  location: Springfield High School
+  date: 2007
+  cv: two
+  position: 1
+
+two:
+  name: Batchelor's Degree
+  location: Random University
+  date: 1999
+  cv: two
+  position: 2

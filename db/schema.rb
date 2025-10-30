@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_29_113719) do
-  create_table "contacts", force: :cascade do |t|
-    t.string "contact_type", default: "generic", null: false
-    t.string "value"
-    t.integer "cv_id", null: false
-    t.integer "position", default: 1
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index [ "cv_id" ], name: "index_contacts_on_cv_id"
-  end
-
+ActiveRecord::Schema[8.0].define(version: 2025_10_30_084124) do
   create_table "cvs", force: :cascade do |t|
     t.string "name"
     t.string "email_address"
@@ -33,5 +23,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_29_113719) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "contact_type", default: "generic", null: false
+    t.string "value"
+    t.integer "cv_id", null: false
+    t.integer "position", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "cv_id" ], name: "index_contacts_on_cv_id"
+  end
   add_foreign_key "contacts", "cvs"
+
+  create_table "education_items", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "date"
+    t.integer "cv_id", null: false
+    t.integer "position", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "cv_id" ], name: "index_education_items_on_cv_id"
+  end
+  add_foreign_key "education_items", "cvs"
 end
