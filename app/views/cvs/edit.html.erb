@@ -152,6 +152,14 @@
                     <%= work_experience_fields.text_field :entity_uri, class: "small-input-field italic w-full", placeholder: "URI for company/entity" %>
                     <%= work_experience_fields.text_field :period, class: "input-field font-semibold text-md text-gray-500", placeholder: "Period, e.g. 2000-2010" %>
                     <%= work_experience_fields.text_area  :description, class: "input-field h-auto", placeholder: "Title/job description", rows: 10 %>
+
+                    <% if work_experience_fields.object.has_tags? %>
+                      <div class="mt-2">
+                        <% work_experience_fields.object.tags_array.each do |tag| %>
+                          <div class="pill"><span><%= tag %></span></div>
+                        <% end %>
+                      </div>
+                    <% end %>
                     <%= work_experience_fields.text_field :tags, class: "small-input-field italic w-full", placeholder: "e.g. Ruby,Ruby on Rails,PostgreSQL" %>
                   </div>
                   <div class="ml-1">
