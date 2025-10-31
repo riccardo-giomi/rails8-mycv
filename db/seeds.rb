@@ -44,4 +44,27 @@ if Rails.env.development?
     level:    "native",
     position: 2
   )
+  cv.languages << Language.create(
+    name:     "Spanish",
+    level:    "intermediate",
+    position: 3
+  )
+  cv.work_experiences << WorkExperience.create(
+    title:       "Software Engineer",
+    entity:      "betterplace.org",
+    entity_uri:  "www.betterplace.org/en",
+    period:      "2022-2024",
+    description: "betterplace.org is an organization that helps ONGs and private citizens to collect donations for social causes. betterplace.org is currently growing and moving to agile practices and a continuos delivery model. I am currently part of this evolution as part of the Engineering team, specifically as a back-end developer with a strong focus on testing and delivery of quality features.",
+    tags:        "Ruby,Ruby on Rails,MySQL,PostgreSQL,GraphQL",
+    position: 1
+  )
+  cv.work_experiences << WorkExperience.create(
+    title:       "Senior developer",
+    entity:      "MMO",
+    entity_uri:  "www.makemoneyorganization.com",
+    period:      "2021",
+    description: "Member of the team developing the internal management application for Make Money Organization, a Professional Training & Coaching company for Real Estate agents.",
+    tags:        "Vue,PHP/Symphony",
+    position: 2
+  )
 end

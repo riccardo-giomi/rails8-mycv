@@ -28,6 +28,9 @@ class CvsController < ApplicationController
     @cv.delete_language(params[:delete_language]) if params[:delete_language]
     @cv.add_language if params[:add_language]
 
+    @cv.delete_work_experience(params[:delete_work_experience]) if params[:delete_work_experience]
+    @cv.add_work_experience if params[:add_work_experience]
+
     respond_to do |format|
       if @cv.update(cv_params)
         format.html { redirect_to edit_cv_path(@cv), notice: "CV saved.", status: :see_other }
@@ -65,7 +68,8 @@ class CvsController < ApplicationController
         :notes,
         contacts_attributes: [ %i[id contact_type value] ],
         education_items_attributes: [ %i[id name location date] ],
-        languages_attributes: [ %i[id name level] ]
+        languages_attributes: [ %i[id name level] ],
+        work_experiences_attributes: [ %i[id title entity entity_uri period description tags] ]
       ]
     )
   end

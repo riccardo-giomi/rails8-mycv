@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Door Stopper
+  entity: Second door on the left
+  entity_uri: door-2-left.example.org
+  period: 2000-2024
+  description: I kept that door stopped, cometh rain or storm.
+  tags: door,stopper
+  cv: two
+  position: 1
+
+two:
+  title: Flea Back-Scratcher
+  entity: EU Parasites United Union
+  entity_uri: eu-puu.example.org
+  period: 1970 - Today
+  description: They are not going to scratch themselves!
+  tags: scratcher, flea-friend, \#noBaths
+  cv: two
+  position: 2

@@ -8,6 +8,9 @@ class Cv < ApplicationRecord
   has_many :languages, dependent: :destroy
   accepts_nested_attributes_for :languages
 
+  has_many :work_experiences, dependent: :destroy
+  accepts_nested_attributes_for :work_experiences
+
   # Creates and associates an empty Contact, setting it's position as last.
   def add_contact
     max_position = contacts.map(&:position).max || 0
@@ -39,5 +42,16 @@ class Cv < ApplicationRecord
   def delete_language(language)
     id = language.respond_to?(:id) ? language.id : language.to_i
     Language.delete(id)
+  end
+
+  # Creates and associates an empty WorkExperience, setting it's position as last.
+  def add_work_experience
+    max_position = work_experiences.map(&:position).max || 0
+    WorkExperience.new(position: max_position + 1).tap { |record| work_experiences << record }
+  end
+
+  def delete_work_experience(work_experience)
+    id = work_experience.respond_to?(:id) ? work_experience.id : work_experience.to_i
+    WorkExperience.delete(id)
   end
 end

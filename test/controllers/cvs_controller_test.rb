@@ -124,6 +124,32 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_cv_url(@cv)
   end
 
+  test "should allow to add empty work experiences" do
+    assert_difference("@cv.work_experiences.count", 1) do
+      patch cv_url(@cv), params: { cv: @cv.attributes, add_work_experience: 1 }
+    end
+
+    assert_redirected_to edit_cv_url(@cv)
+    assert_equal 1, @cv.work_experiences.last.position
+
+    assert_difference("@cv.work_experiences.count", 1) do
+      patch cv_url(@cv), params: { cv: @cv.attributes, add_work_experience: 1 }
+    end
+
+    assert_redirected_to edit_cv_url(@cv)
+    assert_equal 2, @cv.work_experiences.last.position
+  end
+
+  test "should allow to remove a work_experience" do
+    @cv = cvs(:two)
+
+    assert_difference("@cv.work_experiences.count", -1) do
+      patch cv_url(@cv), params: { cv: @cv.attributes, delete_work_experience: @cv.work_experiences.last.id }
+    end
+
+    assert_redirected_to edit_cv_url(@cv)
+  end
+
   test "should update related records at the same time" do
     @cv = cvs(:two)
 
@@ -140,14 +166,23 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     language_attributes["name"]  = "Japanese"
     language_attributes["level"] = "Incapable"
 
+    work_experience_attributes = @cv.work_experiences.first.attributes
+    work_experience_attributes["title"]       = "Changed title"
+    work_experience_attributes["entity"]      = "Changed entity"
+    work_experience_attributes["entity_uri"]  = "Changed entity URI"
+    work_experience_attributes["period"]      = "Changed period"
+    work_experience_attributes["description"] = "Changed description"
+    work_experience_attributes["tags"]        = "Changed tags"
+
     cv_attributes = @cv.attributes
     cv_attributes["name"]          = "Changed Name"
     cv_attributes["email_address"] = "Changed Email"
 
     attributes = cv_attributes.dup
-    attributes["contacts_attributes"]        = [ contact_attributes ]
-    attributes["education_items_attributes"] = [ education_item_attributes ]
-    attributes["languages_attributes"]       = [ language_attributes ]
+    attributes["contacts_attributes"]         = [ contact_attributes ]
+    attributes["education_items_attributes"]  = [ education_item_attributes ]
+    attributes["languages_attributes"]        = [ language_attributes ]
+    attributes["work_experiences_attributes"] = [ work_experience_attributes ]
 
     patch cv_url(@cv), params: { cv: attributes }
 
@@ -157,6 +192,7 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_attribute_values(@cv.contacts.first, contact_attributes)
     assert_attribute_values(@cv.education_items.first, education_item_attributes)
     assert_attribute_values(@cv.languages.first, language_attributes)
+    assert_attribute_values(@cv.work_experiences.first, work_experience_attributes)
   end
 
   test "should destroy cv" do

@@ -78,4 +78,32 @@ class CvTest < ActiveSupport::TestCase
     assert_equal second_position, cv.languages.reload.first.position
     assert_difference("cv.languages.count", -1) { cv.delete_language(cv.languages.first) }
   end
+
+  test "#add_work_experience adds a new empty WorkExperience with updated position" do
+    work_experience = nil
+    cv = Cv.new
+
+    assert_difference("cv.work_experiences.size", 1) { work_experience = cv.add_work_experience }
+
+    assert work_experience.title.blank?
+    assert work_experience.entity.blank?
+    assert work_experience.entity_uri.blank?
+    assert work_experience.period.blank?
+    assert work_experience.description.blank?
+    assert work_experience.tags.blank?
+    assert_equal 1, work_experience.position
+
+    assert_difference("cv.work_experiences.size", 1) { work_experience = cv.add_work_experience }
+    assert_equal 2, work_experience.position
+  end
+
+  test "#delete_work_experience destroys a Work_Experience record but does not update the other positions" do
+    cv = cvs(:two)
+    first_id = cv.work_experiences.first.id
+    second_position = cv.work_experiences.second.position
+
+    assert_difference("cv.work_experiences.count", -1) { cv.delete_work_experience(first_id) }
+    assert_equal second_position, cv.work_experiences.reload.first.position
+    assert_difference("cv.work_experiences.count", -1) { cv.delete_work_experience(cv.work_experiences.first) }
+  end
 end
