@@ -14,6 +14,7 @@ class CvsTest < ApplicationSystemTestCase
     assert_selector "span", text: "#{@cv.base_filename}.*"
     assert_selector "span", text: @cv.language
     assert_selector "p", text: @cv.notes
+    assert_selector "span", text: @cv.updated_at.to_fs(:short)
   end
 
   test "should create an empty CV" do
