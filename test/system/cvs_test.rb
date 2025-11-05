@@ -39,7 +39,7 @@ class CvsTest < ApplicationSystemTestCase
     fill_in "Name", with: @cv.name
     fill_in "Notes", with: @cv.notes
 
-    click_on "Save"
+    click_on "Save", match: :first
 
     assert_text "CV saved."
     click_on "Back"

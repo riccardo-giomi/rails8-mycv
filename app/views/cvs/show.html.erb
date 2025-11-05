@@ -1,9 +1,11 @@
 <% content_for :title, "Cv" %>
 
-<div class=" w-4xl mx-auto h-12 text-center fixed bg-white top-0 right-0 left-0 flex flex-row justify-center">
-  <%= link_to "Back", cvs_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-</div>
+<% content_for :nav_left do %>
+    <%= link_to "Back", cvs_path, class: "button" %>
+    <%= link_to "Preview (new page/tab)", preview_cv_path(@cv), class: "button", target: :_blank %>
+  </div>
+<% end %>
 
-<div class="mx-auto mt-13 mb-1">
+<div class="mx-auto mb-1">
   <%= render @cv %>
 </div>

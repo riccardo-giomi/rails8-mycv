@@ -22,8 +22,27 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container flex mx-auto">
+  <body class="bg-gray-100">
+    <header class="top-bar bg-gray-100 z-50
+                   border-b border-gray-400
+                   shadow-sm shadow-gray-500
+                   fixed h-13 top-0 left-0 right-0
+                   flex justify-around">
+
+      <nav class="nav-left content-center">
+        <div class="flex gap-2"><%= yield :nav_left %></div>
+      </nav>
+
+      <h1 class="nav-title content-center text-xl font-bold md:text-2xl lg:text-4xl">
+        <%= content_for(:title) || "My CV" %>
+      </h1>
+
+      <nav class="nav-right content-center">
+        <div class="flex gap-2"><%= yield :nav_right %></div>
+      </nav>
+    </header>
+
+    <main class="container mt-16 px-1 flex sm:px-0 sm:mx-auto">
       <div class="w-full">
         <% if notice.present? %>
           <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
