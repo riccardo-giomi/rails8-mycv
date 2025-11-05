@@ -1,12 +1,14 @@
 class CvsController < ApplicationController
-  before_action :set_cv, only: %i[ show edit update destroy ]
+  layout :choose_layout_for_current_action
+
+  before_action :set_cv, except: %i[ index create ]
 
   def index
     @cvs = Cv.all
   end
 
-  def show
-  end
+  def show; end
+  def preview; end
 
   def create
     @cv = Cv.create
@@ -15,8 +17,7 @@ class CvsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @cv.delete_contact(params[:delete_contact]) if params[:delete_contact]
@@ -49,6 +50,10 @@ class CvsController < ApplicationController
   end
 
   private
+
+  def choose_layout_for_current_action
+    action_name == "preview" ? "preview" : "application"
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_cv

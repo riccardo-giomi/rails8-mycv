@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :cvs, except: [ :new ]
-
+  resources :cvs, except: [ :new ] do
+    get :preview, on: :member
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

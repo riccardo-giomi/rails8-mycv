@@ -1,26 +1,77 @@
-<div id="<%= dom_id cv %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Name:</strong>
+<div class="header pl-2 rounded-lg border-2 border-gray-400">
+  <h1 class="name mt-2 font-bold text-4xl">
     <%= cv.name %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Email address:</strong>
-    <%= cv.email_address %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Intro line:</strong>
+  </h1>
+
+  <h2 class="specialization mt-1 font-bold text-gray-500 text-2xl">
     <%= cv.intro_line %>
+  </h2>
+
+  <div class="contacts my-2 text-gray-500 font-medium">
+    <div class="w-full h-12 flex gap-2 inline-block align-middle">
+      <%= render contact_icon_partial(:email) %>
+      <span><%= cv.email_address %></span>
+    </div>
+
+    <% cv.contacts.each do |contact| %>
+      <div class="w-full h-12 flex gap-2 inline-block align-middle">
+        <%= render contact_icon_partial(contact.contact_type) %>
+        <span><%= contact.value %></span>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Intro text:</strong>
-    <%= cv.intro_text %>
+
+</div>
+
+<div class="mt-2 p-1 border-2 border-gray-400 rounded-lg md:flex md:justify-between">
+  <div class="education mt-0 ml-1">
+    <h2 class="mb-2 font-bold text-2xl">Education</h2>
+    <% cv.education_items.each do |education_item| %>
+      <p class="font-bold"><%= education_item.name %></p>
+      <p class="font-medium text-gray-500"><%= education_item.location %></p>
+      <p class="italic text-gray-500"><%= education_item.date %></p>
+    <% end %>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Base filename:</strong>
-    <%= cv.base_filename %>
+  <div class="languages mt-2 ml-1 mr-2 md:mt-0 md:ml-0 md:self-end">
+    <h2 class="mb-2 font-bold text-2xl">Languages</h2>
+    <% cv.languages.each do |language| %>
+      <p class="font-bold"><%= language.name %></p>
+      <p class="w-1/2 font-medium text-gray-500"><%= language.level %></p>
+    <% end %>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Language:</strong>
-    <%= cv.language %>
-  </div>
+</div>
+
+<div class="summary mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
+  <h2 class="font-bold text-2xl">Career Summary</h2>
+  <p class="my-2"><%= sanitize cv.intro_text %></p>
+</div>
+
+<div class="experiences mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
+  <h2 class="font-bold text-2xl">Work Experience</h2>
+
+  <% cv.work_experiences.each do |work_experience| %>
+    <div class="my-6">
+      <h3 class="font-bold text-xl"><%= work_experience.title %></h3>
+      <p class="text-gray-500">
+        <% if work_experience.entity.present?%>
+          <span class="font-bold text-lg"><%= work_experience.entity %></span>
+        <% end %>
+        <% if work_experience.entity_uri.present?%>
+          <span class="italic">(<%= work_experience.entity_uri %>)</span>
+        <% end %>
+      </p>
+      <p class="font-semibold text-md text-gray-500">
+        <%= work_experience.period %>
+      </p>
+      <p class="my-1"><%= sanitize work_experience.description %></p>
+      <% if work_experience.has_tags? %>
+        <div class="mt-2">
+          <% work_experience.tags_array.each do |tag| %>
+            <div class="pill"><span><%= tag %></span></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
 </div>
