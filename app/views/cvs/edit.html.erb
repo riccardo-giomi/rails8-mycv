@@ -60,18 +60,18 @@
           <hr class="mt-2">
 
           <div class="flex gap-2">
-            <div class="pt-1">
+            <div class="pt-1 flex items-center">
               <%= render contact_icon_partial(:email) %>
             </div>
-            <%= form.text_field :email_address, class: "input-field", placeholder: "Email address" %>
+            <%= form.text_field :email_address, class: "w-full input-field", placeholder: "Email address" %>
           </div>
 
           <%= form.fields_for :contacts do |contact_fields| %>
             <div class="flex gap-2">
-              <div class="inline-block pt-1">
+              <div class="pt-1 flex items-center">
                 <%= render contact_icon_partial(contact_fields.object.contact_type) %>
               </div>
-              <%= contact_fields.text_field :value, class: "input-field" %>
+              <%= contact_fields.text_field :value, class: "w-full input-field" %>
               <%= contact_fields.select :contact_type, Contact::TYPES, {}, { class: "small-input-field w-auto" } %>
               <%= form.button id: "delete-contact-button", name: "delete_contact", value: contact_fields.object.id, class: "button-red my-1", data: { turbo_confirm: "Are you sure?" } do %>
                 <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -92,8 +92,8 @@
 
         <div class="mt-2">
 
-          <div class="p-1 border-2 border-gray-400 rounded-lg lg:flex lg:justify-between">
-            <div class="education lg:w-3/5">
+          <div class="p-1 border-2 border-gray-400 rounded-lg sm:flex sm:justify-between">
+            <div class="education sm:w-3/5">
               <h2 class="font-bold text-2xl">Education</h2>
               <%= form.fields_for :education_items do |education_item_fields| %>
                 <div class="flex mt-2">

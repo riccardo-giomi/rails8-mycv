@@ -1,5 +1,5 @@
 <div class="header pl-2 rounded-lg border-2 border-gray-400">
-  <h1 class="name mt-2 font-bold text-4xl">
+  <h1 class="name mt-2 font-bold text-3xl">
     <%= cv.name %>
   </h1>
 
@@ -8,13 +8,13 @@
   </h2>
 
   <div class="contacts my-2 text-gray-500 font-medium">
-    <div class="w-full h-12 flex gap-2 inline-block align-middle">
+    <div class="w-full flex gap-2 inline-block align-middle">
       <%= render contact_icon_partial(:email) %>
       <span><%= cv.email_address %></span>
     </div>
 
     <% cv.contacts.each do |contact| %>
-      <div class="w-full h-12 flex gap-2 inline-block align-middle">
+      <div class="w-full flex gap-2 inline-block align-middle">
         <%= render contact_icon_partial(contact.contact_type) %>
         <span><%= contact.value %></span>
       </div>
@@ -23,8 +23,8 @@
 
 </div>
 
-<div class="mt-2 p-1 border-2 border-gray-400 rounded-lg md:flex md:justify-between">
-  <div class="education mt-0 ml-1">
+<div class="mt-2 p-1 border-2 border-gray-400 rounded-lg sm:flex sm:justify-between">
+  <div class="education mt-0 ml-1 sm:min-w-3/5">
     <h2 class="mb-2 font-bold text-2xl">Education</h2>
     <% cv.education_items.each do |education_item| %>
       <p class="font-bold"><%= education_item.name %></p>
@@ -32,11 +32,11 @@
       <p class="italic text-gray-500"><%= education_item.date %></p>
     <% end %>
   </div>
-  <div class="languages mt-2 ml-1 mr-2 md:mt-0 md:ml-0 md:self-end">
+  <div class="languages mt-2 sm:mr-4 sm:mt-0">
     <h2 class="mb-2 font-bold text-2xl">Languages</h2>
     <% cv.languages.each do |language| %>
       <p class="font-bold"><%= language.name %></p>
-      <p class="w-1/2 font-medium text-gray-500"><%= language.level %></p>
+      <p class="w-1/2 mb-2 font-medium text-gray-500"><%= language.level %></p>
     <% end %>
   </div>
 </div>
