@@ -41,16 +41,20 @@
   </div>
 </div>
 
+<%= page_break(@cv, "after_education") %>
+
 <div class="summary mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
   <h2 class="font-bold text-2xl">Career Summary</h2>
   <p class="my-2"><%= sanitize cv.intro_text %></p>
 </div>
 
+<%= page_break(@cv, "after_intro_text") %>
+
 <div class="experiences mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
   <h2 class="font-bold text-2xl">Work Experience</h2>
 
-  <% cv.work_experiences.each do |work_experience| %>
-    <div class="my-6">
+  <% cv.work_experiences.each_with_index do |work_experience, position| %>
+    <div class="mt-6 break-inside-avoid-page">
       <h3 class="font-bold text-xl"><%= work_experience.title %></h3>
       <p class="text-gray-500">
         <% if work_experience.entity.present?%>
@@ -72,6 +76,14 @@
         </div>
       <% end %>
     </div>
-  <% end %>
 
+    <%  if page_break?(@cv, "after_work_experience", position:) %>
+        <p class="mt-1 italic font-sm font-medium font-gray-400">(Continued in the next page)</p>
+      </div>
+      <%= page_break(@cv, "after_work_experience", position:) %>
+      <div class="experiences mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
+        <h2 class="font-bold text-2xl">Work Experience (continued)</h2>
+    <% end %>
+
+  <% end %>
 </div>

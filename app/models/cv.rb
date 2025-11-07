@@ -11,6 +11,13 @@ class Cv < ApplicationRecord
   has_many :work_experiences, dependent: :destroy
   accepts_nested_attributes_for :work_experiences
 
+  has_one :layout, dependent: :destroy
+  accepts_nested_attributes_for :layout, update_only: true
+
+  after_initialize do |cv|
+    cv.layout = Layout.new if cv.id.nil?
+  end
+
   # Creates and associates an empty Contact, setting it's position as last.
   def add_contact
     max_position = contacts.map(&:position).max || 0

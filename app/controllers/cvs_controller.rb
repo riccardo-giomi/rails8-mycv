@@ -71,6 +71,7 @@ class CvsController < ApplicationController
         :base_filename,
         :language,
         :notes,
+        layout_attributes: [ page_breaks: {} ],
         contacts_attributes: [ %i[id contact_type value] ],
         education_items_attributes: [ %i[id name location date] ],
         languages_attributes: [ %i[id name level] ],

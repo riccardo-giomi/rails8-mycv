@@ -37,6 +37,10 @@
          border-gray-400 focus:outline-blue-600;
 }
 
+.checkbox {
+  @apply inline-block shadow-sm cursor-pointer h-5 w-5;
+}
+
 .small-label {
   @apply sm:text-sm sm:font-semibold;
 }

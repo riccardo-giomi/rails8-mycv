@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_30_134959) do
-  create_table "contacts", force: :cascade do |t|
-    t.string "contact_type", default: "generic", null: false
-    t.string "value"
-    t.integer "cv_id", null: false
-    t.integer "position", default: 1
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index [ "cv_id" ], name: "index_contacts_on_cv_id"
-  end
-
+ActiveRecord::Schema[8.0].define(version: 2025_11_07_151936) do
   create_table "cvs", force: :cascade do |t|
     t.string "name"
     t.string "email_address"
@@ -31,6 +21,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_30_134959) do
     t.string "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "layouts", force: :cascade do |t|
+    t.text "page_breaks"
+    t.integer "cv_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "cv_id" ], name: "index_layouts_on_cv_id", unique: true
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "contact_type", default: "generic", null: false
+    t.string "value"
+    t.integer "cv_id", null: false
+    t.integer "position", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "cv_id" ], name: "index_contacts_on_cv_id"
   end
 
   create_table "education_items", force: :cascade do |t|
@@ -68,6 +76,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_30_134959) do
     t.index [ "cv_id" ], name: "index_work_experiences_on_cv_id"
   end
 
+  add_foreign_key "layouts", "cvs"
   add_foreign_key "contacts", "cvs"
   add_foreign_key "education_items", "cvs"
   add_foreign_key "languages", "cvs"
