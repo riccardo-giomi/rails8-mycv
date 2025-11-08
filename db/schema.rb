@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_07_151936) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_08_132440) do
   create_table "cvs", force: :cascade do |t|
     t.string "name"
     t.string "email_address"
@@ -19,6 +19,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_07_151936) do
     t.text "intro_text"
     t.string "base_filename"
     t.string "language"
+    t.string "education_label", default: "Education"
+    t.string "languages_label", default: "Languages"
+    t.string "intro_text_label", default: "Career Summary"
+    t.string "work_experience_label", default: "Work Experience"
+    t.string "work_experience_continues_label", default: "(Continued in the next page)"
+    t.string "work_experience_continued_label", default: "Work Experience (continued)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,9 +82,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_07_151936) do
     t.index [ "cv_id" ], name: "index_work_experiences_on_cv_id"
   end
 
-  add_foreign_key "layouts", "cvs"
   add_foreign_key "contacts", "cvs"
   add_foreign_key "education_items", "cvs"
   add_foreign_key "languages", "cvs"
+  add_foreign_key "layouts", "cvs"
   add_foreign_key "work_experiences", "cvs"
 end

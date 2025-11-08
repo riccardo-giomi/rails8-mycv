@@ -37,6 +37,10 @@
          border-gray-400 focus:outline-blue-600;
 }
 
+.custom-input-field {
+  @apply shadow-sm rounded-md border border-gray-400 focus:outline-blue-600;
+}
+
 .checkbox {
   @apply inline-block shadow-sm cursor-pointer h-5 w-5;
 }

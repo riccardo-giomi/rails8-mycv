@@ -25,7 +25,7 @@
 
 <div class="mt-2 p-1 border-2 border-gray-400 rounded-lg sm:flex sm:justify-between">
   <div class="education mt-0 ml-1 sm:min-w-3/5">
-    <h2 class="mb-2 font-bold text-2xl">Education</h2>
+    <h2 class="mb-2 font-bold text-2xl"><%= cv.education_label %></h2>
     <% cv.education_items.each do |education_item| %>
       <p class="font-bold"><%= education_item.name %></p>
       <p class="font-medium text-gray-500"><%= education_item.location %></p>
@@ -33,7 +33,7 @@
     <% end %>
   </div>
   <div class="languages mt-2 sm:mr-4 sm:mt-0">
-    <h2 class="mb-2 font-bold text-2xl">Languages</h2>
+    <h2 class="mb-2 font-bold text-2xl"><%= cv.languages_label %></h2>
     <% cv.languages.each do |language| %>
       <p class="font-bold"><%= language.name %></p>
       <p class="w-1/2 mb-2 font-medium text-gray-500"><%= language.level %></p>
@@ -44,14 +44,14 @@
 <%= page_break(@cv, "after_education") %>
 
 <div class="summary mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
-  <h2 class="font-bold text-2xl">Career Summary</h2>
+  <h2 class="font-bold text-2xl"><%= cv.intro_text_label %></h2>
   <p class="my-2"><%= sanitize cv.intro_text %></p>
 </div>
 
 <%= page_break(@cv, "after_intro_text") %>
 
 <div class="experiences mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
-  <h2 class="font-bold text-2xl">Work Experience</h2>
+  <h2 class="font-bold text-2xl"><%= cv.work_experience_label %></h2>
 
   <% cv.work_experiences.each_with_index do |work_experience, position| %>
     <div class="mt-6 break-inside-avoid-page">
@@ -78,11 +78,11 @@
     </div>
 
     <%  if page_break?(@cv, "after_work_experience", position:) %>
-        <p class="mt-1 italic font-sm font-medium font-gray-400">(Continued in the next page)</p>
+        <p class="mt-1 italic font-sm font-medium font-gray-400"><%= cv.work_experience_continues_label %></p>
       </div>
       <%= page_break(@cv, "after_work_experience", position:) %>
       <div class="experiences mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
-        <h2 class="font-bold text-2xl">Work Experience (continued)</h2>
+        <h2 class="font-bold text-2xl"><%= cv.work_experience_continued_label %></h2>
     <% end %>
 
   <% end %>
