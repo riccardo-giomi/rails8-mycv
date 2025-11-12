@@ -1,7 +1,8 @@
 class CvsController < ApplicationController
   layout :choose_layout_for_current_action
 
-  before_action :set_cv, except: %i[ index create ]
+  before_action :set_cv, only: %i[ destroy ]
+  before_action :load_full_cv, only: %i[ show preview edit update ]
 
   def index
     @cvs = Cv.all
@@ -58,6 +59,11 @@ class CvsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_cv
     @cv = Cv.find(params.expect(:id))
+  end
+
+  def load_full_cv
+    @cv = Cv.eager_load(:contacts, :education_items, :languages, :work_experiences, :layout)
+            .find(params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.
