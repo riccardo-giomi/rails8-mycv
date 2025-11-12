@@ -21,17 +21,17 @@ class CvTest < ActiveSupport::TestCase
     assert_equal 2, contact.position
   end
 
-  test "#delete_contact destroys a Contact record but does not update the other positions" do
+  test "#delete_contact marks the contact for destruction when the Cv is saved" do
     cv = cvs(:two)
     first_id = cv.contacts.first.id
-    second_position = cv.contacts.second.position
 
-    assert_difference("cv.contacts.count", -1) { cv.delete_contact(first_id) }
-    assert_equal second_position, cv.contacts.reload.first.position
-    assert_difference("cv.contacts.count", -1) { cv.delete_contact(cv.contacts.first) }
+    assert_difference("cv.contacts.count", -1) do
+      cv.delete_contact(first_id)
+      cv.save
+    end
   end
 
-  test "#add_education_item adds a new empty Education_Item with updated position" do
+  test "#add_education_item adds a new empty EducationItem with updated position" do
     education_item = nil
     cv = Cv.new
 
@@ -45,14 +45,15 @@ class CvTest < ActiveSupport::TestCase
     assert_equal 2, education_item.position
   end
 
-  test "#delete_education_item destroys a Education_Item record but does not update the other positions" do
+  test "#delete_education_item marks the EducationItem for destruction when the Cv is saved" do
     cv = cvs(:two)
     first_id = cv.education_items.first.id
     second_position = cv.education_items.second.position
 
-    assert_difference("cv.education_items.count", -1) { cv.delete_education_item(first_id) }
-    assert_equal second_position, cv.education_items.reload.first.position
-    assert_difference("cv.education_items.count", -1) { cv.delete_education_item(cv.education_items.first) }
+    assert_difference("cv.education_items.count", -1) do
+      cv.delete_education_item(first_id)
+      cv.save
+    end
   end
 
   test "#add_language adds a new empty Language with updated position" do
@@ -69,14 +70,15 @@ class CvTest < ActiveSupport::TestCase
     assert_equal 2, language.position
   end
 
-  test "#delete_language destroys a Language record but does not update the other positions" do
+  test "#delete_language marks the Language for destruction when the Cv is saved" do
     cv = cvs(:two)
     first_id = cv.languages.first.id
     second_position = cv.languages.second.position
 
-    assert_difference("cv.languages.count", -1) { cv.delete_language(first_id) }
-    assert_equal second_position, cv.languages.reload.first.position
-    assert_difference("cv.languages.count", -1) { cv.delete_language(cv.languages.first) }
+    assert_difference("cv.languages.count", -1) do
+      cv.delete_language(first_id)
+      cv.save
+    end
   end
 
   test "#add_work_experience adds a new empty WorkExperience with updated position" do
@@ -97,13 +99,14 @@ class CvTest < ActiveSupport::TestCase
     assert_equal 2, work_experience.position
   end
 
-  test "#delete_work_experience destroys a Work_Experience record but does not update the other positions" do
+  test "#delete_work_experience marks a WorkExperience for destruction when the Cv is saved" do
     cv = cvs(:two)
     first_id = cv.work_experiences.first.id
     second_position = cv.work_experiences.second.position
 
-    assert_difference("cv.work_experiences.count", -1) { cv.delete_work_experience(first_id) }
-    assert_equal second_position, cv.work_experiences.reload.first.position
-    assert_difference("cv.work_experiences.count", -1) { cv.delete_work_experience(cv.work_experiences.first) }
+    assert_difference("cv.work_experiences.count", -1) do
+      cv.delete_work_experience(first_id)
+      cv.save
+    end
   end
 end

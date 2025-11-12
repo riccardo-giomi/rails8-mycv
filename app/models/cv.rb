@@ -1,17 +1,17 @@
 class Cv < ApplicationRecord
-  has_many :contacts, dependent: :destroy
+  has_many :contacts, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :contacts
 
-  has_many :education_items, dependent: :destroy
+  has_many :education_items, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :education_items
 
-  has_many :languages, dependent: :destroy
+  has_many :languages, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :languages
 
-  has_many :work_experiences, dependent: :destroy
+  has_many :work_experiences, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :work_experiences
 
-  has_one :layout, dependent: :destroy
+  has_one :layout, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :layout, update_only: true
 
   after_initialize do |cv|
@@ -26,7 +26,7 @@ class Cv < ApplicationRecord
 
   def delete_contact(contact)
     id = contact.respond_to?(:id) ? contact.id : contact.to_i
-    contacts.delete(Contact.find(id))
+    contacts.find { |c| c.id == id }.mark_for_destruction
   end
 
   # Creates and associates an empty EducationItem, setting it's position as last.
@@ -37,7 +37,7 @@ class Cv < ApplicationRecord
 
   def delete_education_item(education_item)
     id = education_item.respond_to?(:id) ? education_item.id : education_item.to_i
-    education_items.delete(EducationItem.find(id))
+    education_items.find { |c| c.id == id }.mark_for_destruction
   end
 
   # Creates and associates an empty Language, setting it's position as last.
@@ -48,7 +48,7 @@ class Cv < ApplicationRecord
 
   def delete_language(language)
     id = language.respond_to?(:id) ? language.id : language.to_i
-    languages.delete(Language.find(id))
+    languages.find { |c| c.id == id }.mark_for_destruction
   end
 
   # Creates and associates an empty WorkExperience, setting it's position as last.
@@ -59,6 +59,6 @@ class Cv < ApplicationRecord
 
   def delete_work_experience(work_experience)
     id = work_experience.respond_to?(:id) ? work_experience.id : work_experience.to_i
-    work_experiences.delete(WorkExperience.find(id))
+    work_experiences.find { |c| c.id == id }.mark_for_destruction
   end
 end
