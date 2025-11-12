@@ -21,7 +21,7 @@ class Cv < ApplicationRecord
   # Creates and associates an empty Contact, setting it's position as last.
   def add_contact
     max_position = contacts.map(&:position).max || 0
-    Contact.new(contact_type: "generic", position: max_position + 1).tap { |record| contacts << record }
+    contacts.build(contact_type: "generic", position: max_position + 1)
   end
 
   def delete_contact(contact)
