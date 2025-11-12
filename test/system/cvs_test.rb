@@ -42,7 +42,7 @@ class CvsTest < ApplicationSystemTestCase
     click_on "Save", match: :first
 
     assert_text "CV saved."
-    click_on "Back"
+    click_on "To index"
   end
 
   test "should destroy CV" do

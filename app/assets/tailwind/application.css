@@ -13,7 +13,7 @@
 }
 
 .nav-icon-button {
-  @apply inline-block align-middle rounded-lg shadow-xs shadow-black p-1 text-black bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
+  @apply inline-block align-middle rounded-lg shadow-xs shadow-black p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
 }
 
 .button-red {

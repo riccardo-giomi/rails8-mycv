@@ -26,7 +26,7 @@ class Cv < ApplicationRecord
 
   def delete_contact(contact)
     id = contact.respond_to?(:id) ? contact.id : contact.to_i
-    Contact.delete(id)
+    contacts.delete(Contact.find(id))
   end
 
   # Creates and associates an empty EducationItem, setting it's position as last.
@@ -37,7 +37,7 @@ class Cv < ApplicationRecord
 
   def delete_education_item(education_item)
     id = education_item.respond_to?(:id) ? education_item.id : education_item.to_i
-    EducationItem.delete(id)
+    education_items.delete(EducationItem.find(id))
   end
 
   # Creates and associates an empty Language, setting it's position as last.
@@ -48,7 +48,7 @@ class Cv < ApplicationRecord
 
   def delete_language(language)
     id = language.respond_to?(:id) ? language.id : language.to_i
-    Language.delete(id)
+    languages.delete(Language.find(id))
   end
 
   # Creates and associates an empty WorkExperience, setting it's position as last.
@@ -59,6 +59,6 @@ class Cv < ApplicationRecord
 
   def delete_work_experience(work_experience)
     id = work_experience.respond_to?(:id) ? work_experience.id : work_experience.to_i
-    WorkExperience.delete(id)
+    work_experiences.delete(WorkExperience.find(id))
   end
 end

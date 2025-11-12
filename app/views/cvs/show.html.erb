@@ -1,9 +1,12 @@
 <% content_for :title, "Cv" %>
 
 <% content_for :nav_left do %>
-    <%= link_to "Back", cvs_path, class: "button" %>
-    <%= link_to "Preview (new page/tab)", preview_cv_path(@cv), class: "button", target: :_blank %>
-  </div>
+  <%= render partial: "layouts/controls/top_page_link" %>
+  <%= link_to "To index", cvs_path, class: "button" %>
+<% end %>
+
+<% content_for :nav_right do %>
+  <%= render partial: "layouts/controls/preview_link", locals: { cv: @cv } %>
 <% end %>
 
 <div class="mx-auto mb-1">
