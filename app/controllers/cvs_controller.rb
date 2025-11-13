@@ -8,7 +8,13 @@ class CvsController < ApplicationController
     @cvs = Cv.all
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @cv.as_json }
+    end
+  end
+
   def preview; end
 
   def create

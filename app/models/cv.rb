@@ -61,4 +61,13 @@ class Cv < ApplicationRecord
     id = work_experience.respond_to?(:id) ? work_experience.id : work_experience.to_i
     work_experiences.find { |c| c.id == id }.mark_for_destruction
   end
+
+  def as_json
+    super.tap do |json|
+      [ :contacts, :education_items, :languages, :work_experiences ].each do |relation|
+        json[relation] = self.send(relation).map(&:as_json)
+      end
+      json[:layout] = layout.as_json
+    end
+  end
 end

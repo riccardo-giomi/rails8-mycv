@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :cvs, except: [ :new ] do
-    get :preview, on: :member
+  constraints(format: "html") do
+    resources :cvs, except: [ :new ] do
+        get :preview, on: :member
+    end
+  end
+
+  constraints(format: "json") do
+    resources :cvs, only: [ :show ]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,6 +21,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
   root "cvs#index"
 end
