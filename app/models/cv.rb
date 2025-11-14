@@ -18,6 +18,10 @@ class Cv < ApplicationRecord
     cv.layout = Layout.new if cv.id.nil?
   end
 
+  after_update_commit do |cv|
+    cv.broadcast_refresh
+  end
+
   # Creates and associates an empty Contact, setting it's position as last.
   def add_contact
     max_position = contacts.map(&:position).max || 0
