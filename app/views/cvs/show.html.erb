@@ -1,14 +1,14 @@
-<% content_for :title, "Cv" %>
+<% content_for :title, "CV" %>
 
 <% content_for :nav_left do %>
-  <%= render partial: "layouts/controls/top_page_link" %>
-  <%= link_to "To index", cvs_path, class: "button" %>
-  <%= link_to "Edit", edit_cv_path(@cv), class: "button" %>
+  <%= render partial: "layouts/controls/top_page" %>
+  <%= render partial: "layouts/controls/bottom_page" %>
+  <%= render partial: "layouts/controls/edit", locals: { cv: @cv } %>
 <% end %>
 
 <% content_for :nav_right do %>
   <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
-  <%= render partial: "layouts/controls/preview_link", locals: { cv: @cv } %>
+  <%= render partial: "layouts/controls/preview", locals: { cv: @cv } %>
 <% end %>
 
 <div class="mx-auto mb-1">

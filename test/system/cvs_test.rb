@@ -39,10 +39,10 @@ class CvsTest < ApplicationSystemTestCase
     fill_in "Name", with: @cv.name
     fill_in "Notes", with: @cv.notes
 
-    click_on "Save", match: :first
+    click_on "Save", match: :prefer_exact
 
     assert_text "CV saved."
-    click_on "To index"
+    click_on "MyCV"
   end
 
   test "should destroy CV" do

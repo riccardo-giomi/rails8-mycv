@@ -1,15 +1,14 @@
-<% content_for :title, "Editing CV" %>
+<% content_for :title, "Edit CV" %>
 
 <% content_for :nav_left do %>
-  <%= render partial: "layouts/controls/top_page_link" %>
-  <%= render partial: "layouts/controls/bottom_page_link" %>
-  <%= link_to "To index", cvs_path, class: "button" %>
+  <%= render partial: "layouts/controls/top_page" %>
+  <%= render partial: "layouts/controls/bottom_page" %>
 <% end %>
 
 <% content_for :nav_right do %>
   <button class="js-only button-green" style="display: none;">Save</button>
   <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
-  <%= render partial: "layouts/controls/preview_link", locals: { cv: @cv } %>
+  <%= render partial: "layouts/controls/preview", locals: { cv: @cv } %>
 <% end %>
 
 <%= form_with(model: @cv, class: "contents") do |form| %>
@@ -116,7 +115,7 @@
                   </div>
                 </div>
               <% end %>
-              <div class="mt-1 text-center">
+              <div class="mb-2 mt-1">
                 <%= form.button id: "add-education-item-button", name: "add_education_item", class: "button" do %>
                   <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
@@ -131,7 +130,7 @@
                 <div class="flex mt-2">
                   <div class="w-full">
                     <%= subform.text_field :name, class: "small-input-field w-full mr-1 font-bold", placeholder: "Language" %>
-                    <%= subform.text_field :level, class: "small-input-field w-1/2 font-medium text-gray-500", placeholder: "Level" %>
+                    <%= subform.text_field :level, class: "small-input-field w-full font-medium text-gray-500", placeholder: "Level" %>
                   </div>
                   <div class="ml-1 flex flex-col justify-center">
                     <%= form.button id: "delete-language-button", name: "delete_language", value: subform.object.id, class: "button-red my-1", data: { turbo_confirm: "Are you sure?" } do %>
@@ -142,7 +141,7 @@
                   </div>
                 </div>
               <% end %>
-              <div class="mt-1 text-center">
+              <div class="mt-1">
                 <%= form.button id: "add-language-button", name: "add_language", class: "button" do %>
                   <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
