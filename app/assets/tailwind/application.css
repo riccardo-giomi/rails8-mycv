@@ -9,11 +9,11 @@
 }
 
 .button {
-  @apply inline-block align-middle rounded-lg shadow-xs shadow-gray-500 p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
+  @apply inline-block align-middle rounded-lg shadow-xs shadow-gray-500 p-2 text-body bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
 }
 
 .nav-icon-button {
-  @apply inline-block align-middle rounded-lg shadow-xs shadow-black p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
+  @apply inline-block align-middle rounded-lg shadow-xs shadow-black p-2 text-body bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
 }
 
 .button-red {
@@ -25,7 +25,7 @@
 }
 
 .icon-button {
-  @apply inline-block rounded-full shadow-xs shadow-gray-500 p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600  font-medium cursor-pointer;
+  @apply inline-block rounded-full shadow-xs shadow-gray-500 p-2 text-body bg-gray-200 hover:text-white hover:bg-blue-600  font-medium cursor-pointer;
 }
 
 .icon-button-red {

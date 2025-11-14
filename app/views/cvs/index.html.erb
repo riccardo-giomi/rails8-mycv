@@ -68,7 +68,7 @@
 
           <% if cv.notes.present? %>
             <div class="mt-2">
-              <p><strong>Notes:</strong> <%= cv.notes %></p>
+              <p><strong>Notes:</strong> <%= simple_format cv.notes, class: "mb-3" %></p>
             </div>
           <% end %>
         </div>

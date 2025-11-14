@@ -46,7 +46,7 @@
 
   <div class="summary mt-2 p-1 pl-2 border-2 border-gray-400 rounded-lg">
     <h2 class="font-bold text-2xl"><%= cv.intro_text_label %></h2>
-    <p class="my-2"><%= sanitize cv.intro_text %></p>
+    <p class="my-2"><%= simple_format cv.intro_text, class: "mb-3" %></p>
   </div>
 
   <%= page_break(@cv, "after_intro_text") %>
@@ -68,7 +68,7 @@
         <p class="font-semibold text-md text-gray-500">
           <%= work_experience.period %>
         </p>
-        <p class="my-1"><%= sanitize work_experience.description %></p>
+        <p class="my-1"><%= simple_format work_experience.description, class: "mb-3" %></p>
         <% if work_experience.has_tags? %>
           <div class="mt-2">
             <% work_experience.tags_array.each do |tag| %>
