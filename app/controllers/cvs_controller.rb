@@ -11,7 +11,11 @@ class CvsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: @cv.as_json }
+      format.json do
+        send_data @cv.as_json,
+                  filename: "#{@cv.base_filename || @cv.id}.json",
+                  content_type: "application/json"
+      end
     end
   end
 
