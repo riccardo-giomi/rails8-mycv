@@ -57,6 +57,30 @@ class Cv < ApplicationRecord
     WorkExperience.new(position: max_position + 1).tap { |record| work_experiences << record }
   end
 
+  def move_work_experience_up(experience)
+    id = experience.respond_to?(:id) ? experience.id : experience.to_i
+
+    record = work_experiences.find { |w| w.id == id }
+    index  = work_experiences.index(record)
+    position = record.position
+
+    if previous = work_experiences[index - 1]
+      record.position, previous.position = previous.position, record.position
+    end
+  end
+
+  def move_work_experience_down(experience)
+    id = experience.respond_to?(:id) ? experience.id : experience.to_i
+
+    record = work_experiences.find { |w| w.id == id }
+    index  = work_experiences.index(record)
+    position = record.position
+
+    if following = work_experiences[index + 1]
+      record.position, following.position = following.position, record.position
+    end
+  end
+
   def delete_work_experience(work_experience)
     id = work_experience.respond_to?(:id) ? work_experience.id : work_experience.to_i
     work_experiences.find { |c| c.id == id }.mark_for_destruction

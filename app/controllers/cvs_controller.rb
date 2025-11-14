@@ -39,6 +39,9 @@ class CvsController < ApplicationController
     @cv.delete_work_experience(params[:delete_work_experience]) if params[:delete_work_experience]
     @cv.add_work_experience if params[:add_work_experience]
 
+    @cv.move_work_experience_up(params[:move_up_work_experience]) if params[:move_up_work_experience]
+    @cv.move_work_experience_down(params[:move_down_work_experience]) if params[:move_down_work_experience]
+
     respond_to do |format|
       if @cv.update(cv_params)
         format.html { redirect_to edit_cv_path(@cv), notice: "CV saved.", status: :see_other }
@@ -68,7 +71,7 @@ class CvsController < ApplicationController
   end
 
   def load_full_cv
-    @cv = Cv.eager_load(:contacts, :education_items, :languages, :work_experiences, :layout)
+    @cv = Cv.includes(:contacts, :education_items, :languages, :work_experiences, :layout)
             .find(params.expect(:id))
   end
 
