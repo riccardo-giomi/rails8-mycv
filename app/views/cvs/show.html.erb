@@ -7,7 +7,7 @@
 <% end %>
 
 <% content_for :nav_right do %>
-  <%= render partial: "layouts/controls/download_pdf", locals: { cv: @cv } %>
+  <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
   <%= render partial: "layouts/controls/preview_link", locals: { cv: @cv } %>
 <% end %>
 
