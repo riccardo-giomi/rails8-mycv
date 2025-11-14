@@ -8,6 +8,7 @@
 
 <% content_for :nav_right do %>
   <button class="js-only button-green" style="display: none;">Save</button>
+  <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
   <%= render partial: "layouts/controls/preview_link", locals: { cv: @cv } %>
 <% end %>
 
