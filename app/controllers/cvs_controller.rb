@@ -2,7 +2,7 @@ class CvsController < ApplicationController
   layout :choose_layout_for_current_action
 
   before_action :set_cv, only: %i[ destroy ]
-  before_action :load_full_cv, only: %i[ show preview edit update ]
+  before_action :load_full_cv, only: %i[ show preview copy edit update ]
 
   def index
     @cvs = Cv.all
@@ -22,9 +22,19 @@ class CvsController < ApplicationController
   def preview; end
 
   def create
-    @cv = Cv.create
+    @cv = Cv.new
+    @cv.layout = Layout.new
+    @cv.save
+
     respond_to do |format|
       format.html { redirect_to cvs_path, notice: "CV was successfully created.", status: :see_other }
+    end
+  end
+
+  def copy
+    @cv.build_copy.save
+    respond_to do |format|
+      format.html { redirect_to cvs_path, notice: "CV copy was successfully created.", status: :see_other }
     end
   end
 

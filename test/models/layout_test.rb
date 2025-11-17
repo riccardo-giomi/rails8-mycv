@@ -11,12 +11,6 @@ class LayoutTest < ActiveSupport::TestCase
     assert_equal '["after_intro_text","after_work_experience_0","after_work_experience_1"]', attribute.serialize(layout.page_breaks)
   end
 
-  test "An empty Layout record is automatically added to a new CV" do
-    cv = Cv.new
-
-    assert cv.layout.present?
-  end
-
   test "There can be only one layout per CV" do
     cv = cvs(:one)
 

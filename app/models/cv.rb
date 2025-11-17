@@ -14,10 +14,6 @@ class Cv < ApplicationRecord
   has_one :layout, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :layout, update_only: true
 
-  after_initialize do |cv|
-    cv.layout = Layout.new if cv.id.nil?
-  end
-
   after_update_commit do |cv|
     cv.broadcast_refresh
   end
@@ -92,10 +88,19 @@ class Cv < ApplicationRecord
 
   def as_json
     super.tap do |json|
-      [ :contacts, :education_items, :languages, :work_experiences ].each do |relation|
+      %i[ contacts education_items languages work_experiences ].each do |relation|
         json[relation] = self.send(relation).map(&:as_json)
       end
       json[:layout] = layout.as_json
+    end
+  end
+
+  def build_copy
+    self.dup.tap do |copy|
+      %i[ contacts education_items languages work_experiences ].each do |relation|
+        copy.send(relation).build(self.send(relation).map { |related| related.dup.attributes })
+      end
+      copy.build_layout(self.layout.dup.attributes)
     end
   end
 end

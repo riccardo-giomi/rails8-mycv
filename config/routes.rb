@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   constraints(format: "html") do
     resources :cvs, except: [ :new ] do
-        get :preview, on: :member
+      get :preview, on: :member
+      post :copy, on: :member
     end
   end
 
