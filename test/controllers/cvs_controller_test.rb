@@ -23,6 +23,21 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should create a copy of a CV" do
+    @cv = cvs(:two)
+
+    assert_difference("Cv.count", 1) do
+      post copy_cv_url(@cv)
+    end
+
+    copy = Cv.last
+    assert copy.layout.present?
+    assert_equal 2, copy.contacts.size
+    assert_equal 2, copy.education_items.size
+    assert_equal 2, copy.languages.size
+    assert_equal 2, copy.work_experiences.size
+  end
+
   test "should get edit" do
     get edit_cv_url(@cv)
     assert_response :success

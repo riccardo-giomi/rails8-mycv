@@ -143,4 +143,86 @@ class CvTest < ActiveSupport::TestCase
       cv.save
     end
   end
+
+  test "#build_copy creates a deep copy of the CV with no ids and not persisted" do
+    cv = cvs(:two)
+    copy = cv.build_copy
+
+    assert copy.id.nil?
+
+    assert_equal "Jane D'oh!",                       copy.name
+    assert_equal "j-d@example.org",                  copy.email_address
+    assert_equal "intro-line, ma in Italiano!",      copy.intro_line
+    assert_equal "intro-text, ma in Italiano!",      copy.intro_text
+    assert_equal "cv.it",                            copy.base_filename
+    assert_equal "it",                               copy.language
+    assert_equal "CV in Italiano",                   copy.notes
+    assert_equal "Educazione",                       copy.education_label
+    assert_equal "Lingue",                           copy.languages_label
+    assert_equal "Carriera",                         copy.intro_text_label
+    assert_equal "Esperienza",                       copy.work_experience_label
+    assert_equal "(Continua nella prossima pagina)", copy.work_experience_continues_label
+    assert_equal "Esperienza (continua)",            copy.work_experience_continued_label
+
+
+    assert copy.layout.id.nil?
+    assert_equal [], copy.layout.page_breaks
+
+
+    contact_copy = copy.contacts.first
+    assert contact_copy.id.nil?
+    assert_equal "linkedin", contact_copy.contact_type
+    assert_equal "linkedin.example.org", contact_copy.value
+    assert_equal 1, contact_copy.position
+
+    contact_copy = copy.contacts.second
+    assert contact_copy.id.nil?
+    assert_equal "github", contact_copy.contact_type
+    assert_equal "github.example.org", contact_copy.value
+    assert_equal 2, contact_copy.position
+
+    education_item_copy = copy.education_items.first
+    assert education_item_copy.id.nil?
+    assert_equal "Diploma", education_item_copy.name
+    assert_equal "Springfield High School", education_item_copy.location
+    assert_equal "2007", education_item_copy.date
+    assert_equal 1, education_item_copy.position
+
+    education_item_copy = copy.education_items.second
+    assert education_item_copy.id.nil?
+    assert_equal "Batchelor's Degree", education_item_copy.name
+    assert_equal "Random University", education_item_copy.location
+    assert_equal "1999", education_item_copy.date
+    assert_equal 2, education_item_copy.position
+
+    language_copy = copy.languages.first
+    assert language_copy.id.nil?
+    assert_equal "Italian", language_copy.name
+    assert_equal "native", language_copy.level
+    assert_equal 1, language_copy.position
+
+    language_copy = copy.languages.second
+    assert language_copy.id.nil?
+    assert_equal "English", language_copy.name
+    assert_equal "professional", language_copy.level
+    assert_equal 2, language_copy.position
+
+    experience_item_copy = copy.work_experiences.first
+    assert_equal "Door Stopper", experience_item_copy.title
+    assert_equal "Second door on the left", experience_item_copy.entity
+    assert_equal "door-2-left.example.org", experience_item_copy.entity_uri
+    assert_equal "2000-2024", experience_item_copy.period
+    assert_equal "I kept that door stopped, cometh rain or storm.", experience_item_copy.description
+    assert_equal "door,stopper", experience_item_copy.tags
+    assert_equal 1, experience_item_copy.position
+
+    experience_item_copy = copy.work_experiences.second
+    assert_equal "Flea Back-Scratcher", experience_item_copy.title
+    assert_equal "EU Parasites United Union", experience_item_copy.entity
+    assert_equal "eu-puu.example.org", experience_item_copy.entity_uri
+    assert_equal "1970 - Today", experience_item_copy.period
+    assert_equal "They are not going to scratch themselves!", experience_item_copy.description
+    assert_equal "scratcher, flea-friend, \#noBaths", experience_item_copy.tags
+    assert_equal 2, experience_item_copy.position
+  end
 end

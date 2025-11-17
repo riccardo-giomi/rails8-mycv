@@ -17,3 +17,9 @@ two:
   base_filename: cv.it
   language: it
   notes: CV in Italiano
+  education_label: Educazione
+  languages_label: Lingue
+  intro_text_label: Carriera
+  work_experience_label: Esperienza
+  work_experience_continues_label: (Continua nella prossima pagina)
+  work_experience_continued_label: Esperienza (continua)

@@ -27,6 +27,20 @@ class CvsTest < ApplicationSystemTestCase
     assert_selector "span", text: "No Email Address given"
   end
 
+  test "should create a copy of a CV" do
+    visit cvs_url
+    assert_text "Jane D'oh!", count: 1
+    assert_text "intro-line, ma in Italiano!", count: 1
+    assert_text "j-d@example.org", count: 1
+    assert_text "CV in Italiano", count: 1
+
+    click_on "Create a copy", match: :first
+    assert_text "Jane D'oh!", count: 2
+    assert_text "intro-line, ma in Italiano!", count: 2
+    assert_text "j-d@example.org", count: 2
+    assert_text "CV in Italiano", count: 2
+  end
+
   test "should update CV" do
     visit cvs_url
     click_on "Edit this CV", match: :first
