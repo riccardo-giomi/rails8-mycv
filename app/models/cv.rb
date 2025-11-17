@@ -1,4 +1,7 @@
 class Cv < ApplicationRecord
+  has_one :layout, dependent: :destroy, autosave: true
+  accepts_nested_attributes_for :layout, update_only: true
+
   has_many :contacts, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :contacts
 
@@ -11,11 +14,12 @@ class Cv < ApplicationRecord
   has_many :work_experiences, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :work_experiences
 
-  has_one :layout, dependent: :destroy, autosave: true
-  accepts_nested_attributes_for :layout, update_only: true
-
   after_update_commit do |cv|
     cv.broadcast_refresh
+  end
+
+  def create_layout
+    build_layout
   end
 
   # Creates and associates an empty Contact, setting it's position as last.

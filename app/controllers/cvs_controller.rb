@@ -23,7 +23,7 @@ class CvsController < ApplicationController
 
   def create
     @cv = Cv.new
-    @cv.layout = Layout.new
+    @cv.create_layout
     @cv.save
 
     respond_to do |format|

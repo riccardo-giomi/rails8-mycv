@@ -7,6 +7,15 @@ class CvTest < ActiveSupport::TestCase
     assert cv.valid?
   end
 
+  test "#create_layout builds an empty Layout record for the CV" do
+    cv = Cv.new
+    cv.create_layout
+
+    assert cv.layout.present?
+    assert cv.layout.page_breaks.blank?
+    assert cv.layout.cv_id.nil?
+  end
+
   test '#add_contact adds (but not saves) a new empty Contact with updated position and type "generic"' do
     contact = nil
     cv = Cv.new
