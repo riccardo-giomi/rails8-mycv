@@ -162,6 +162,30 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 2, @cv.work_experiences.last.position
   end
 
+  test "should allow to change work-experiences positions (up)" do
+    @cv = cvs(:two)
+    assert_equal "Door Stopper", @cv.work_experiences.first.title
+    assert_equal "Flea Back-Scratcher", @cv.work_experiences.second.title
+
+    patch cv_url(@cv), params: { cv: @cv.attributes, move_work_experience_up: @cv.work_experiences.second.id }
+    @cv.work_experiences.reload
+
+    assert_equal "Flea Back-Scratcher", @cv.work_experiences.first.title
+    assert_equal "Door Stopper", @cv.work_experiences.second.title
+  end
+
+  test "should allow to change work-experiences positions (down)" do
+    @cv = cvs(:two)
+    assert_equal "Door Stopper", @cv.work_experiences.first.title
+    assert_equal "Flea Back-Scratcher", @cv.work_experiences.second.title
+
+    patch cv_url(@cv), params: { cv: @cv.attributes, move_work_experience_down: @cv.work_experiences.first.id }
+    @cv.work_experiences.reload
+
+    assert_equal "Flea Back-Scratcher", @cv.work_experiences.first.title
+    assert_equal "Door Stopper", @cv.work_experiences.second.title
+  end
+
   test "should allow to remove a work_experience" do
     @cv = cvs(:two)
 

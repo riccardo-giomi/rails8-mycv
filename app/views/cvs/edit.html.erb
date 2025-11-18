@@ -209,14 +209,14 @@
                   <% end %>
 
                   <% if subform.options[:child_index] > 0 %>
-                    <%= form.button id: "move-up-work-experience-button", name: "move_up_work_experience", value: subform.object.id, class: "button my-1" do %>
+                    <%= form.button id: "move-work-experience-up-button", name: "move_work_experience_up", value: subform.object.id, class: "button my-1" do %>
                       <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
                       </svg>
                     <% end %>
                   <% end %>
                   <% if subform.options[:child_index] < (work_experiences_count - 1) %>
-                    <%= form.button id: "move-down-work-experience-button", name: "move_down_work_experience", value: subform.object.id, class: "button my-1" do %>
+                    <%= form.button id: "move-work-experience-down-button", name: "move_work_experience_down", value: subform.object.id, class: "button my-1" do %>
                       <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
                       </svg>

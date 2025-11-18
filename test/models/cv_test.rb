@@ -133,6 +133,34 @@ class CvTest < ActiveSupport::TestCase
     assert_equal 2, work_experience.position
   end
 
+  test "#move_work_experience_up switches an experience position with the previous one" do
+    cv = cvs(:two)
+    first_experience = cv.work_experiences.first
+    second_experience = cv.work_experiences.second
+
+    cv.move_work_experience_up(first_experience)
+    assert first_experience.position = 1
+    assert second_experience.position = 2
+
+    cv.move_work_experience_up(second_experience)
+    assert first_experience.position = 2
+    assert second_experience.position = 1
+  end
+
+  test "#move_work_experience_down switches an experience position with the previous one" do
+    cv = cvs(:two)
+    first_experience = cv.work_experiences.first
+    second_experience = cv.work_experiences.second
+
+    cv.move_work_experience_down(second_experience)
+    assert first_experience.position = 1
+    assert second_experience.position = 2
+
+    cv.move_work_experience_down(first_experience)
+    assert first_experience.position = 2
+    assert second_experience.position = 1
+  end
+
   test "#delete_work_experience marks a WorkExperience for destruction when the Cv is saved" do
     cv = cvs(:two)
     first_id = cv.work_experiences.first.id

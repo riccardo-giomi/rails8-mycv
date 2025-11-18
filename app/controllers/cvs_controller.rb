@@ -53,8 +53,8 @@ class CvsController < ApplicationController
     @cv.delete_work_experience(params[:delete_work_experience]) if params[:delete_work_experience]
     @cv.add_work_experience if params[:add_work_experience]
 
-    @cv.move_work_experience_up(params[:move_up_work_experience]) if params[:move_up_work_experience]
-    @cv.move_work_experience_down(params[:move_down_work_experience]) if params[:move_down_work_experience]
+    @cv.move_work_experience_up(params[:move_work_experience_up]) if params[:move_work_experience_up]
+    @cv.move_work_experience_down(params[:move_work_experience_down]) if params[:move_work_experience_down]
 
     respond_to do |format|
       if @cv.update(cv_params)
