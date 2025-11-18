@@ -70,9 +70,9 @@
         </p>
         <p class="my-1"><%= simple_format work_experience.description, class: "mb-3" %></p>
         <% if work_experience.has_tags? %>
-          <div class="mt-2">
+          <div>
             <% work_experience.tags_array.each do |tag| %>
-              <div class="pill"><span><%= tag %></span></div>
+              <div class="pill mt-2"><span><%= tag %></span></div>
             <% end %>
           </div>
         <% end %>
