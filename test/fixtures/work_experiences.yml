@@ -16,6 +16,6 @@ two:
   entity_uri: eu-puu.example.org
   period: 1970 - Today
   description: They are not going to scratch themselves!
-  tags: scratcher, flea-friend, \#noBaths
+  tags: "scratcher, flea-friend, #noBaths"
   cv: two
   position: 2

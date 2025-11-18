@@ -144,6 +144,21 @@ class CvTest < ActiveSupport::TestCase
     end
   end
 
+  test "#as_json includes data from the associations" do
+    cv = cvs(:two)
+    json = cv.as_json
+
+    assert_equal cv.layout.as_json, json[:layout]
+    assert_equal cv.contacts.first.as_json, json[:contacts].first
+    assert_equal cv.contacts.second.as_json, json[:contacts].second
+    assert_equal cv.education_items.first.as_json, json[:education_items].first
+    assert_equal cv.education_items.second.as_json, json[:education_items].second
+    assert_equal cv.languages.first.as_json, json[:languages].first
+    assert_equal cv.languages.second.as_json, json[:languages].second
+    assert_equal cv.work_experiences.first.as_json, json[:work_experiences].first
+    assert_equal cv.work_experiences.second.as_json, json[:work_experiences].second
+  end
+
   test "#build_copy creates a deep copy of the CV with no ids and not persisted" do
     cv = cvs(:two)
     copy = cv.build_copy
@@ -222,7 +237,7 @@ class CvTest < ActiveSupport::TestCase
     assert_equal "eu-puu.example.org", experience_item_copy.entity_uri
     assert_equal "1970 - Today", experience_item_copy.period
     assert_equal "They are not going to scratch themselves!", experience_item_copy.description
-    assert_equal "scratcher, flea-friend, \#noBaths", experience_item_copy.tags
+    assert_equal "scratcher, flea-friend, #noBaths", experience_item_copy.tags
     assert_equal 2, experience_item_copy.position
   end
 end
