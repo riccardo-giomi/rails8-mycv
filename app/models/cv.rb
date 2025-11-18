@@ -18,6 +18,14 @@ class Cv < ApplicationRecord
     cv.broadcast_refresh
   end
 
+  def self.from_json(json)
+    data = JSON.parse(json)
+    %w[ layout contacts education_items languages work_experiences ].each do |relation|
+      data["#{relation}_attributes"] = data.delete(relation)
+    end
+    Cv.build(data)
+  end
+
   def create_layout
     build_layout
   end
@@ -92,6 +100,7 @@ class Cv < ApplicationRecord
 
   def as_json
     super.tap do |json|
+      json.delete("id")
       %i[ contacts education_items languages work_experiences ].each do |relation|
         json[relation] = self.send(relation).map(&:as_json)
       end

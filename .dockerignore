@@ -27,6 +27,9 @@
 # Ignore storage (uploaded files in development and any SQLite databases).
 /storage/*
 !/storage/.keep
+!/storage/json/
+storage/json/*
+!storage/json/.keep
 /tmp/storage/*
 !/tmp/storage/.keep
 

@@ -187,85 +187,96 @@ class CvTest < ActiveSupport::TestCase
     assert_equal cv.work_experiences.second.as_json, json[:work_experiences].second
   end
 
+  test "Cv::from_json creates a new (unsaved) Cv with associations from a JSON string" do
+    cv = cvs(:two)
+    json_string = cv.build_copy.to_json
+
+    new_cv = Cv.from_json(json_string)
+    assert_copy_of_cv2(new_cv)
+  end
+
   test "#build_copy creates a deep copy of the CV with no ids and not persisted" do
     cv = cvs(:two)
-    copy = cv.build_copy
-
-    assert copy.id.nil?
-
-    assert_equal "Jane D'oh!",                       copy.name
-    assert_equal "j-d@example.org",                  copy.email_address
-    assert_equal "intro-line, ma in Italiano!",      copy.intro_line
-    assert_equal "intro-text, ma in Italiano!",      copy.intro_text
-    assert_equal "cv.it",                            copy.base_filename
-    assert_equal "it",                               copy.language
-    assert_equal "CV in Italiano",                   copy.notes
-    assert_equal "Educazione",                       copy.education_label
-    assert_equal "Lingue",                           copy.languages_label
-    assert_equal "Carriera",                         copy.intro_text_label
-    assert_equal "Esperienza",                       copy.work_experience_label
-    assert_equal "(Continua nella prossima pagina)", copy.work_experience_continues_label
-    assert_equal "Esperienza (continua)",            copy.work_experience_continued_label
+    assert_copy_of_cv2(cv.build_copy)
+  end
 
 
-    assert copy.layout.id.nil?
-    assert_equal [], copy.layout.page_breaks
+  def assert_copy_of_cv2(cv)
+    assert cv.id.nil?
+
+    assert_equal "Jane D'oh!",                       cv.name
+    assert_equal "j-d@example.org",                  cv.email_address
+    assert_equal "intro-line, ma in Italiano!",      cv.intro_line
+    assert_equal "intro-text, ma in Italiano!",      cv.intro_text
+    assert_equal "cv.it",                            cv.base_filename
+    assert_equal "it",                               cv.language
+    assert_equal "CV in Italiano",                   cv.notes
+    assert_equal "Educazione",                       cv.education_label
+    assert_equal "Lingue",                           cv.languages_label
+    assert_equal "Carriera",                         cv.intro_text_label
+    assert_equal "Esperienza",                       cv.work_experience_label
+    assert_equal "(Continua nella prossima pagina)", cv.work_experience_continues_label
+    assert_equal "Esperienza (continua)",            cv.work_experience_continued_label
 
 
-    contact_copy = copy.contacts.first
-    assert contact_copy.id.nil?
-    assert_equal "linkedin", contact_copy.contact_type
-    assert_equal "linkedin.example.org", contact_copy.value
-    assert_equal 1, contact_copy.position
+    assert cv.layout.id.nil?
+    assert_equal [], cv.layout.page_breaks
 
-    contact_copy = copy.contacts.second
-    assert contact_copy.id.nil?
-    assert_equal "github", contact_copy.contact_type
-    assert_equal "github.example.org", contact_copy.value
-    assert_equal 2, contact_copy.position
 
-    education_item_copy = copy.education_items.first
-    assert education_item_copy.id.nil?
-    assert_equal "Diploma", education_item_copy.name
-    assert_equal "Springfield High School", education_item_copy.location
-    assert_equal "2007", education_item_copy.date
-    assert_equal 1, education_item_copy.position
+    contact = cv.contacts.first
+    assert contact.id.nil?
+    assert_equal "linkedin", contact.contact_type
+    assert_equal "linkedin.example.org", contact.value
+    assert_equal 1, contact.position
 
-    education_item_copy = copy.education_items.second
-    assert education_item_copy.id.nil?
-    assert_equal "Batchelor's Degree", education_item_copy.name
-    assert_equal "Random University", education_item_copy.location
-    assert_equal "1999", education_item_copy.date
-    assert_equal 2, education_item_copy.position
+    contact = cv.contacts.second
+    assert contact.id.nil?
+    assert_equal "github", contact.contact_type
+    assert_equal "github.example.org", contact.value
+    assert_equal 2, contact.position
 
-    language_copy = copy.languages.first
-    assert language_copy.id.nil?
-    assert_equal "Italian", language_copy.name
-    assert_equal "native", language_copy.level
-    assert_equal 1, language_copy.position
+    education_item = cv.education_items.first
+    assert education_item.id.nil?
+    assert_equal "Diploma", education_item.name
+    assert_equal "Springfield High School", education_item.location
+    assert_equal "2007", education_item.date
+    assert_equal 1, education_item.position
 
-    language_copy = copy.languages.second
-    assert language_copy.id.nil?
-    assert_equal "English", language_copy.name
-    assert_equal "professional", language_copy.level
-    assert_equal 2, language_copy.position
+    education_item = cv.education_items.second
+    assert education_item.id.nil?
+    assert_equal "Batchelor's Degree", education_item.name
+    assert_equal "Random University", education_item.location
+    assert_equal "1999", education_item.date
+    assert_equal 2, education_item.position
 
-    experience_item_copy = copy.work_experiences.first
-    assert_equal "Door Stopper", experience_item_copy.title
-    assert_equal "Second door on the left", experience_item_copy.entity
-    assert_equal "door-2-left.example.org", experience_item_copy.entity_uri
-    assert_equal "2000-2024", experience_item_copy.period
-    assert_equal "I kept that door stopped, cometh rain or storm.", experience_item_copy.description
-    assert_equal "door,stopper", experience_item_copy.tags
-    assert_equal 1, experience_item_copy.position
+    language = cv.languages.first
+    assert language.id.nil?
+    assert_equal "Italian", language.name
+    assert_equal "native", language.level
+    assert_equal 1, language.position
 
-    experience_item_copy = copy.work_experiences.second
-    assert_equal "Flea Back-Scratcher", experience_item_copy.title
-    assert_equal "EU Parasites United Union", experience_item_copy.entity
-    assert_equal "eu-puu.example.org", experience_item_copy.entity_uri
-    assert_equal "1970 - Today", experience_item_copy.period
-    assert_equal "They are not going to scratch themselves!", experience_item_copy.description
-    assert_equal "scratcher, flea-friend, #noBaths", experience_item_copy.tags
-    assert_equal 2, experience_item_copy.position
+    language = cv.languages.second
+    assert language.id.nil?
+    assert_equal "English", language.name
+    assert_equal "professional", language.level
+    assert_equal 2, language.position
+
+    experience_item = cv.work_experiences.first
+    assert_equal "Door Stopper", experience_item.title
+    assert_equal "Second door on the left", experience_item.entity
+    assert_equal "door-2-left.example.org", experience_item.entity_uri
+    assert_equal "2000-2024", experience_item.period
+    assert_equal "I kept that door stopped, cometh rain or storm.", experience_item.description
+    assert_equal "door,stopper", experience_item.tags
+    assert_equal 1, experience_item.position
+
+    experience_item = cv.work_experiences.second
+    assert_equal "Flea Back-Scratcher", experience_item.title
+    assert_equal "EU Parasites United Union", experience_item.entity
+    assert_equal "eu-puu.example.org", experience_item.entity_uri
+    assert_equal "1970 - Today", experience_item.period
+    assert_equal "They are not going to scratch themselves!", experience_item.description
+    assert_equal "scratcher, flea-friend, #noBaths", experience_item.tags
+    assert_equal 2, experience_item.position
   end
 end

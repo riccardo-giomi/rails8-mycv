@@ -3,4 +3,10 @@ class Contact < ApplicationRecord
   default_scope { order(:position) }
 
   TYPES = %i[generic email github linkedin phone]
+
+  def as_json
+    super.tap do |json|
+      json.delete("id")
+    end
+  end
 end

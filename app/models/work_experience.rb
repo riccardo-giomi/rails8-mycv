@@ -4,4 +4,10 @@ class WorkExperience < ApplicationRecord
 
   def has_tags? = tags.present?
   def tags_array = tags&.strip&.split(",")&.map(&:strip) || []
+
+  def as_json
+    super.tap do |json|
+      json.delete("id")
+    end
+  end
 end

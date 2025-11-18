@@ -28,4 +28,10 @@ class Layout < ApplicationRecord
 
   ActiveRecord::Type.register(:page_breaks, PageBreaks)
   attribute :page_breaks, :page_breaks
+
+  def as_json
+    super.tap do |json|
+      json.delete("id")
+    end
+  end
 end

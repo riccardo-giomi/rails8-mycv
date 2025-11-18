@@ -23,7 +23,7 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should allow download of a CV as JSON" do
+  test "should allow download of a CV as JSON (nullifying ids)" do
     get cv_url(@cv, format: :json)
 
     assert_equal @cv.to_json, response.body
