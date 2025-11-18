@@ -12,7 +12,7 @@ class CvsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        send_data @cv.as_json,
+        send_data @cv.to_json,
                   filename: "#{@cv.base_filename || @cv.id}.json",
                   content_type: "application/json"
       end
