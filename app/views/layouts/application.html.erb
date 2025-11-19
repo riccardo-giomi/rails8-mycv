@@ -38,7 +38,7 @@
         <%= content_for(:title) || "" %>
       </h1>
 
-      <nav class="w-full mx-2 sm:mx-6 flex justify-between">
+      <nav class="w-full mx-2 sm:mx-6 flex justify-between" data-controller="scroll">
         <div class="nav-left my-1 px-2 content-center border-2 border-gray-400 rounded-lg">
           <div class="flex gap-2"><%= yield :nav_left %></div>
         </div>
