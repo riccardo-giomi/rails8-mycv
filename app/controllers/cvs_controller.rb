@@ -27,6 +27,7 @@ class CvsController < ApplicationController
     @cv.save
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to cvs_path, notice: "CV was successfully created.", status: :see_other }
     end
   end
@@ -69,6 +70,7 @@ class CvsController < ApplicationController
     @cv.destroy!
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to cvs_path, notice: "CV was successfully destroyed.", status: :see_other }
     end
   end

@@ -1,0 +1,14 @@
+<%= turbo_stream.replace "notice" do %>
+  <%= render partial: "layouts/notice" %>
+<% end %>
+
+<%= turbo_stream.replace @cv do %>
+  <%= render partial: "abstract", locals: { cv: @cv, change: :destroy } %>
+
+  <script>
+   setTimeout(() => {
+     const node = document.getElementById("<%=dom_id(@cv)%>");
+     node.parentNode.removeChild(node);
+   }, 1000);
+  </script>
+<% end %>

@@ -51,9 +51,7 @@
 
     <main class="container mt-17 px-1 flex sm:px-0 sm:mx-auto">
       <div class="w-full">
-        <% if notice.present? %>
-          <p class="w-full p-2 border-2 border-green-600 bg-green-200 text-green-800 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-        <% end %>
+        <%=  render partial: "layouts/notice" %>
 
         <%= yield %>
 

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .pill {
-  @apply p-1 px-2 min-w-12 rounded-full text-sm font-bold border border-gray-400 bg-gray-100 text-gray-500 inline-block;
+  @apply p-1 px-2 min-w-12 rounded-full text-sm font-bold border border-gray-400 text-gray-500 inline-block;
 }
 .pill span,
 .pill svg {

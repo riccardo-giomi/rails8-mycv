@@ -1,7 +1,8 @@
 require "application_system_test_case"
 
-class CvsTest < ApplicationSystemTestCase
+class CvsTestNoJS < ApplicationSystemTestCase
   setup do
+    Capybara.current_driver = :rack_test
     @cv = cvs(:one)
   end
 
@@ -21,7 +22,9 @@ class CvsTest < ApplicationSystemTestCase
     visit cvs_url
     click_on "New CV"
 
-    assert_selector ".created-highlight"
+    assert_text "CV was successfully created"
+
+    assert_selector "p", text: "No Name given"
     assert_selector "span", text: "No Email Address given"
   end
 
@@ -59,11 +62,8 @@ class CvsTest < ApplicationSystemTestCase
 
   test "should destroy CV" do
     visit cvs_url
-    accept_confirm { click_on "Delete this CV", match: :first }
+    click_on "Delete this CV", match: :first
 
-    assert_selector "#cvs .cv-abstract", count: 2
-    assert_selector ".destroyed-highlight"
-    sleep(1) # wait for the animation to finish and the element to be removed
-    assert_selector "#cvs .cv-abstract", count: 1
+    assert_text "CV was successfully destroyed"
   end
 end

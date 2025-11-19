@@ -8,3 +8,33 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+@keyframes created-highlight {
+  0% {
+    background: #05df72;
+  }
+  100% {
+    background: none;
+  }
+}
+.created-highlight {
+  animation: created-highlight 1s;
+}
+
+@keyframes destroyed-highlight {
+  0% {
+    opacity: 100%;
+    backgound: none;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0;
+    background: #ffa2a2;
+  }
+}
+.destroyed-highlight {
+  animation: destroyed-highlight 1s;
+  animation-fill-mode: forwards;
+}
