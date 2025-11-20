@@ -1,8 +1,6 @@
 <% content_for :title, "CV" %>
 
 <% content_for :nav_left do %>
-  <%= render partial: "layouts/controls/top_page" %>
-  <%= render partial: "layouts/controls/bottom_page" %>
   <%= render partial: "layouts/controls/edit", locals: { cv: @cv } %>
 <% end %>
 
@@ -11,6 +9,6 @@
   <%= render partial: "layouts/controls/preview", locals: { cv: @cv } %>
 <% end %>
 
-<div class="mx-auto mb-1">
+<div class="mx-auto my-2">
   <%= render @cv %>
 </div>

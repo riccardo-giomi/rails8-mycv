@@ -23,34 +23,46 @@
     <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
   </head>
 
-  <body class="bg-gray-100">
+  <body class="bg-gray-100" data-controller="js-only">
     <header class="w-full
                    top-bar bg-gray-100 z-50
                    border-b border-gray-400
                    shadow-sm shadow-gray-500
-                   fixed h-15 top-0 left-0 right-0
-                   flex justify-start">
+                   fixed h-25 top-0 left-0 right-0
+                   flex flex-col">
 
-      <div class="my-2 pl-1 pr-2 content-center font-bold text-xl border-r-2 border-gray-400">
-        <%= link_to "MyCV", cvs_path, alt: "To Index", title: "To Index"%>
+      <div class="flex border-b-2 border-gray-400">
+        <div class="my-2 pl-1 pr-2 content-center font-bold text-xl border-r-2 border-gray-400">
+          <%= link_to "MyCV", cvs_path, alt: "To Index", title: "To Index"%>
+        </div>
+        <h1 class="nav-title text-nowrap ml-2 content-center text-xl font-bold">
+          <%= content_for(:title) || "" %>
+        </h1>
       </div>
-      <h1 class="nav-title text-nowrap ml-2 content-center text-xl font-bold">
-        <%= content_for(:title) || "" %>
-      </h1>
 
-      <nav class="w-full mx-2 sm:mx-6 flex justify-between" data-controller="scroll">
-        <div class="nav-left my-1 px-2 content-center border-2 border-gray-400 rounded-lg">
-          <div class="flex gap-2"><%= yield :nav_left %></div>
+      <nav class="w-full flex justify-between px-1" data-controller="scroll">
+        <div class="nav-left p-1 space-x-1">
+          <%= render partial: "layouts/controls/top_page" %>
+          <%= render partial: "layouts/controls/bottom_page" %>
+          <%= yield :nav_left %>
         </div>
 
-        <div class="nav-right my-1 ml-2 px-2 content-center border-2 border-gray-400 rounded-lg">
-          <div class="flex gap-2"><%= yield :nav_right %></div>
-        </div>
+        <% if content_for? :nav_center %>
+          <div class="nav-center p-1 space-x-1">
+            <%= yield :nav_center %>
+          </div>
+        <% end %>
+
+        <% if content_for? :nav_right %>
+          <div class="nav-right p-1 space-x-1">
+            <%= yield :nav_right %>
+          </div>
+        <% end %>
       </nav>
     </header>
 
-    <main class="container mt-17 px-1 flex sm:px-0 sm:mx-auto">
-      <div class="w-full">
+    <main class="container mt-25 px-1 flex sm:px-0 sm:mx-auto">
+      <div class="mt-1 w-full">
         <%=  render partial: "layouts/notice" %>
 
         <%= yield %>
