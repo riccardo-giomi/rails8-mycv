@@ -41,7 +41,7 @@ class CvsTest < ApplicationSystemTestCase
 
   test "should update CV" do
     visit cvs_url
-    click_on "Edit this CV", match: :first
+    click_on "Edit", match: :first
 
     fill_in "cv_base_filename", with: @cv.base_filename
     fill_in "Email address", with: @cv.email_address

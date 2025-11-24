@@ -1,47 +1,23 @@
 @import "tailwindcss";
 
-.pill {
-  @apply p-1 px-2 min-w-12 rounded-full text-sm font-bold border border-gray-400 text-gray-500 inline-block;
-}
-.pill span,
-.pill svg {
-  @apply inline-block align-middle;
-}
-
 .button {
-  @apply inline-block align-middle rounded-lg border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
+  @apply inline-block align-middle m-0 p-2 bg-gray-200 border-1 border-gray-400 rounded-lg shadow-md shadow-gray-500 text-left cursor-pointer;
 }
 
-header form.button_to {
-  @apply inline-block m-0 border-0 p-0;
+form.button_to {
+  @apply m-0 border-0 p-0;
 }
 
-.nav-icon-button {
-  @apply inline-block align-middle rounded-lg border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600 font-medium cursor-pointer;
-}
-
-.nav-icon-button-green {
-  @apply inline-block align-middle rounded-lg border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-green-700 bg-gray-200 hover:text-white hover:bg-green-700 font-medium cursor-pointer;
-}
-
-.nav-icon-button-red {
-  @apply inline-block align-middle rounded-lg border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 font-medium cursor-pointer;
+.button-default {
+  @apply font-medium text-black hover:text-white hover:bg-blue-600;
 }
 
 .button-red {
-  @apply inline-block align-middle rounded-lg border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 font-medium cursor-pointer;
+  @apply font-medium text-red-600 hover:text-white hover:bg-red-600;
 }
 
 .button-green {
-  @apply inline-block align-middle rounded-lg border-1 border-gray-400 shadow-md shadow-gray-500 font-medium cursor-pointer p-2 text-green-700 bg-gray-200 hover:text-white hover:bg-green-700;
-}
-
-.icon-button {
-  @apply inline-block rounded-full border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-black bg-gray-200 hover:text-white hover:bg-blue-600  font-medium cursor-pointer;
-}
-
-.icon-button-red {
-  @apply inline-block rounded-full border-1 border-gray-400 shadow-md shadow-gray-500 p-2 text-red-600 bg-gray-200 hover:text-white hover:bg-red-600 font-medium cursor-pointer;
+  @apply font-medium text-green-700 hover:text-white hover:bg-green-700;
 }
 
 .input-field {
@@ -73,4 +49,12 @@ header form.button_to {
 .field_with_errors .input-field,
 .field_with_errors .small-input-field {
   @apply border-red-400 focus:outline-red-600;
+}
+
+.pill {
+  @apply p-1 px-2 min-w-12 rounded-full text-sm font-bold border border-gray-400 text-gray-500 inline-block;
+}
+.pill span,
+.pill svg {
+  @apply inline-block align-middle;
 }
