@@ -1,7 +1,3 @@
-<%= turbo_stream.replace "notice" do %>
-  <%= render partial: "layouts/notice" %>
-<% end %>
-
 <%= turbo_stream.append "cvs" do %>
   <%= render partial: "abstract", locals: { cv: @cv, change: :create } %>
 <% end %>

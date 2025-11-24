@@ -33,8 +33,10 @@ class CvsController < ApplicationController
   end
 
   def copy
-    @cv.build_copy.save
+    @copy = @cv.build_copy
+    @copy.save
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to cvs_path, notice: "CV copy was successfully created.", status: :see_other }
     end
   end
