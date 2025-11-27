@@ -11,10 +11,9 @@ application up and running.
 
 # Installation
 
-MyCV is a Rails 8 application developed with Ruby 3.2.2 and configured to use
-SQLite3 as a DB - it is a simple application intended for use by a single user.
+MyCV is a Rails 8.1.1 application configured to use SQLite3 as a DB - it is a simple application intended for use by a single user.
 
-Requires: `Ruby` ( >= 3.2.2) and `SQlite3`.
+Requires: `Ruby` ( >= 3.2.0) and `SQlite3`.
 
 Download or clone the application from github: > `git clone
 https://github.com/riccardo-giomi/rails8-mycv`
@@ -28,7 +27,6 @@ You can run tests with: > `bin/rails test:all`
 And start the server with: > `bin/dev`
 
 # Main features
-
 
 ## CRUD
 
