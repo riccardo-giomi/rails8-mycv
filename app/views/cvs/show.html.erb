@@ -1,4 +1,5 @@
-<% content_for :title, "CV" %>
+<% content_for :title, @cv.base_filename %>
+<% content_for :page_title, "CV" %>
 
 <% content_for :nav_left do %>
   <%= render partial: "layouts/controls/edit", locals: { cv: @cv } %>
@@ -6,8 +7,10 @@
 
 <% content_for :nav_right do %>
   <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
-  <%= render partial: "layouts/controls/preview", locals: { cv: @cv } %>
+  <%= render partial: "layouts/controls/print", locals: { cv: @cv } %>
 <% end %>
+
+<%= turbo_stream_from @cv %>
 
 <div class="mx-auto my-2">
   <%= render @cv %>

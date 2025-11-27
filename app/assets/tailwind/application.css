@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 .button {
-  @apply inline-block align-middle m-0 p-2 bg-gray-200 border-1 border-gray-400 rounded-lg shadow-md shadow-gray-500 text-left cursor-pointer;
+  @apply inline-block align-middle p-2 bg-gray-200 border-1 border-gray-400 rounded-lg shadow-md shadow-gray-500 text-left cursor-pointer;
 }
 
 form.button_to {
   @apply m-0 border-0 p-0;
+}
+
+form.button_to .button {
+  @apply w-full;
 }
 
 .button-default {

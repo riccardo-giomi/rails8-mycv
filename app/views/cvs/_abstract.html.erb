@@ -12,6 +12,9 @@
   <div class="cv-abstract my-2 flex justify-between p-2 rounded-xl border-2 border-gray-400 <%= extra_class %>">
     <div>
       <p class="text-lg font-semibold text-black">
+        (ID: <%= cv.id.to_s %>)
+      </p>
+      <p class="text-lg font-semibold text-black">
         <% if cv.name.present? %>
           <%= cv.name %>
         <% else %>
@@ -67,7 +70,7 @@
     </div>
 
     <% if change != :destroy %>
-      <div class="flex flex-col justify-start gap-2">
+      <div class="flex flex-col justify-start content-stretch gap-2">
         <%= render partial: "layouts/controls/show",   locals: { cv: } %>
         <%= render partial: "layouts/controls/edit",   locals: { cv: } %>
         <%= render partial: "layouts/controls/copy",   locals: { cv: } %>

@@ -23,13 +23,14 @@
     <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
   </head>
 
-  <body class="bg-gray-100" data-controller="js-only">
+  <body class="bg-gray-100 print:bg-white" data-controller="controls">
     <header class="w-full
                    top-bar bg-gray-100 z-50
                    border-b border-gray-400
                    shadow-sm shadow-gray-500
                    fixed h-25 top-0 left-0 right-0
-                   flex flex-col">
+                   flex flex-col
+                   print:hidden">
 
       <div class="flex border-b-2 border-gray-400">
         <div class="my-2 pl-1 pr-2 content-center font-bold text-xl border-r-2 border-gray-400">
@@ -61,7 +62,7 @@
       </nav>
     </header>
 
-    <main class="container mt-25 px-1 flex sm:px-0 sm:mx-auto">
+    <main class="container mt-27 mx-auto px-1 lg:w-[1000px] sm:px-0 sm:w-[595px] print:my-0 print:p-0 print:w-full">
       <div class="mt-1 w-full">
         <%=  render partial: "layouts/notice" %>
 

@@ -1,8 +1,8 @@
 <%# locals: ()%>
 <% if flash.notice.present? %>
-  <p id="notice" class="w-full p-2 border-2 border-green-600 bg-green-200 text-green-800 font-medium rounded-md inline-block" id="notice">
+  <p id="notice" class="w-full p-2 border-2 border-green-600 bg-green-200 text-green-800 font-medium rounded-md inline-block print:hidden" id="notice">
     <%= flash.notice %>
   </p>
 <% else %>
-  <div id="notice"></div>
+  <div id="notice print:hidden"></div>
 <% end %>
