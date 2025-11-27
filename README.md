@@ -17,9 +17,9 @@ SQLite3 as a DB - it is a simple application intended for use by a single user.
 Requires: `Ruby` ( >= 3.2.2) and `SQlite3`.
 
 Download or clone the application from github: > `git clone
-https://github.com/riccardo-giomi/mycv`
+https://github.com/riccardo-giomi/rails8-mycv`
 
-Run Bundler: > `cd mycv` > `bundler install`
+Run Bundler: > `cd rails8-mycv` > `bundler install`
 
 Prepare the database: > `bin/rails db:setup`
 
