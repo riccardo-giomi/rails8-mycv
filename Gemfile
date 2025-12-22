@@ -62,7 +62,7 @@ end
 
 group :test do
   # minitest 6.0.0 does not seem to work with current Rails 8.1.1
-  gem "minitest", "< 6.0"
+  gem "minitest", "< 7.0"
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
