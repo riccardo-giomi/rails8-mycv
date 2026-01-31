@@ -31,7 +31,7 @@
 
       <div class="metadata border-2 border-dotted border-gray-500 p-2 mb-2">
         <h2 class="font-bold text-2xl">Other CV data</h2>
-        <div class="sm:grid sm:grid-cols-3 sm:gap-2">
+        <div class="md:grid md:grid-cols-3 md:gap-2">
           <div>
             <div class="mt-1">
               <%= form.label :base_filename, "Default name for files, without extension", class: "small-label" %>
@@ -54,11 +54,11 @@
       <div class="curriculum border-2 border-dashed border-gray-500 p-2 m-0">
         <div class="header p-1 rounded-lg border-2 border-gray-400">
           <div class="my-1">
-            <%= form.text_field :name, class: "input-field font-bold text-xl sm:text-2xl md:text-3xl", placeholder: "Name" %>
+            <%= form.text_field :name, class: "input-field font-bold text-xl md:text-2xl md:text-3xl", placeholder: "Name" %>
           </div>
 
           <div class="my-1">
-            <%= form.text_field :intro_line, class: "input-field font-bold text-gray-500 text-lg sm:text-xl md:text-2xl", placeholder: 'Specialization or one-line intro (e.g. "developer")' %>
+            <%= form.text_field :intro_line, class: "input-field font-bold text-gray-500 text-lg md:text-xl md:text-2xl", placeholder: 'Specialization or one-line intro (e.g. "developer")' %>
           </div>
 
           <hr class="mt-2">
@@ -96,10 +96,10 @@
 
         <div class="mt-2">
 
-          <div class="p-1 border-2 border-gray-400 rounded-lg sm:flex sm:justify-between">
-            <div class="education sm:w-3/5">
+          <div class="p-1 border-2 border-gray-400 rounded-lg flex flex-col gap-1 md:flex-row md:justify-between">
+            <div class="education md:w-3/5">
 
-              <%= form.text_field :education_label, class: "custom-input-field p-1 font-bold text-lg sm:text-xl md:text-2xl", placeholder: "Change/translate label"%>
+              <%= form.text_field :education_label, class: "custom-input-field p-1 font-bold text-lg md:text-xl md:text-2xl", placeholder: "Change/translate label"%>
 
               <%= form.fields_for :education_items do |subform| %>
                 <div class="flex mt-2">
@@ -127,8 +127,8 @@
               </div>
             </div>
 
-            <div class="languages self-end">
-              <%= form.text_field :languages_label, class: "custom-input-field p-1 font-bold text-lg sm:text-xl md:text-2xl", placeholder: "Change/translate label"%>
+            <div class="languages md:self-end">
+              <%= form.text_field :languages_label, class: "custom-input-field p-1 font-bold text-lg md:text-xl md:text-2xl", placeholder: "Change/translate label"%>
               <%= form.fields_for :languages do |subform| %>
                 <div class="flex mt-2">
                   <div class="w-full">
@@ -160,7 +160,7 @@
           </div>
 
           <div class="summary mt-2 p-1 border-2 border-gray-400 rounded-lg">
-            <%= form.text_field :intro_text_label, class: "custom-input-field p-1 font-bold text-lg sm:text-xl md:text-2xl", placeholder: "Change/translate label"%>
+            <%= form.text_field :intro_text_label, class: "custom-input-field p-1 font-bold text-lg md:text-xl md:text-2xl", placeholder: "Change/translate label"%>
 
             <div class="mt-2">
               <%= form.text_area :intro_text, class: "input-field h-auto", rows: 10 %>
@@ -173,9 +173,9 @@
           </div>
 
           <div class="experiences mt-2 p-1 border-2 border-gray-400 rounded-lg">
-            <div class="mt-1 sm:mt-0 sm:flex sm:gap-2 sm:place-items-center">
-              <%= form.text_field :work_experience_label, class: "custom-input-field w-full p-1 font-bold text-lg sm:text-xl md:text-2xl", placeholder: "Change/translate label"%>
-              <div class="mt-2 sm:mt-0 w-full p-2 border-2 border-dotted border-gray-400">
+            <div class="mt-1 md:mt-0 md:flex md:gap-2 md:place-items-center">
+              <%= form.text_field :work_experience_label, class: "custom-input-field w-full p-1 font-bold text-lg md:text-xl md:text-2xl", placeholder: "Change/translate label"%>
+              <div class="mt-2 md:mt-0 w-full p-2 border-2 border-dotted border-gray-400">
                 <%= form.label :work_experience_continues_label, "Shown if the print layout separates experiences", class: "small-label" %>
                 <%= form.text_field :work_experience_continues_label, class: "small-input-field w-full"%>
 
