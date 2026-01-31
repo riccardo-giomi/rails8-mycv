@@ -8,7 +8,7 @@ form.button_to {
   @apply m-0 border-0 p-0;
 }
 
-form.button_to .button {
+.flex-col > form.button_to .button {
   @apply w-full;
 }
 
