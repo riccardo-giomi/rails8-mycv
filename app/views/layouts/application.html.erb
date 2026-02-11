@@ -59,17 +59,17 @@
           <%= yield :nav_left %>
         </div>
 
-        <% if content_for? :nav_center %>
-          <div class="nav-center p-1 space-x-1">
+        <div class="nav-center p-1 space-x-1">
+          <% if content_for? :nav_center %>
             <%= yield :nav_center %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
 
-        <% if content_for? :nav_right %>
-          <div class="nav-right p-1 space-x-1">
+        <div class="nav-right p-1 space-x-1">
+          <% if content_for? :nav_right %>
             <%= yield :nav_right %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </nav>
     </header>
 

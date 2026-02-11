@@ -1,47 +1,59 @@
-<%= form_with(model: cover_letter, class: "contents") do |form| %>
-  <% if cover_letter.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(cover_letter.errors.count, "error") %> prohibited this cover_letter from being saved:</h2>
+<%# locals: (cover_letter:)%>
+<%= form_with(model: cover_letter, class: "contents", data: { controller: "form", "form-target": "form" }) do |form| %>
+  <div class="w-full">
+    <div class="w-full mt-2 mb-14">
+      <% if cover_letter.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+          <h2><%= pluralize(cover_letter.errors.count, "error") %> prohibited this cover letter from being saved:</h2>
 
-      <ul class="list-disc ml-6">
-        <% cover_letter.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+          <ul class="list-disc ml-6">
+            <% cover_letter.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <div class="cover-letter border-1 border-gray-400 p-2 m-0 mb-2 shadow-lg">
+        <fieldset>
+          <div class="my-3">
+            <%= form.label :name, class: "small-label" %>
+            <%= form.text_field :name, class: "input-field" %>
+          </div>
+
+          <div class="my-3">
+            <%= form.label :company_name, class: "small-label" %>
+            <%= form.text_field :company_name, class: "input-field" %>
+          </div>
+
+          <div class="my-3">
+            <%= form.label :company_url, class: "small-label" %>
+            <%= form.text_field :company_url, class: "input-field" %>
+          </div>
+
+          <div class="my-3">
+            <%= form.label :job_url, class: "small-label" %>
+            <%= form.text_field :job_url, class: "input-field" %>
+          </div>
+
+          <div class="my-3">
+            <%= form.label :content, class: "small-label" %>
+            <div class="border-2 border-dashed border-gray-400 p-2 my-2">
+              <%= form.textarea :content, class: "input-field h-auto", rows: 10 %>
+            </div>
+          </div>
+
+          <div class="my-3 flex gap-2">
+            <%= form.checkbox :active, class: "checkbox" %>
+            <%= form.label :active, class: "small-label" %>
+          </div>
+
+          <div class="nojs-control w-full my-3 text-center">
+            <%= form.submit "Save", class: "button button-green" %>
+          </div>
+        </fieldset>
+      </div>
     </div>
-  <% end %>
-
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cover_letter.errors[:name].none?, "border-red-400 focus:outline-red-600": cover_letter.errors[:name].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :company_name %>
-    <%= form.text_field :company_name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cover_letter.errors[:company_name].none?, "border-red-400 focus:outline-red-600": cover_letter.errors[:company_name].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :company_url %>
-    <%= form.text_field :company_url, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cover_letter.errors[:company_url].none?, "border-red-400 focus:outline-red-600": cover_letter.errors[:company_url].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :job_url %>
-    <%= form.text_field :job_url, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cover_letter.errors[:job_url].none?, "border-red-400 focus:outline-red-600": cover_letter.errors[:job_url].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :content %>
-    <%= form.textarea :content, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": cover_letter.errors[:content].none?, "border-red-400 focus:outline-red-600": cover_letter.errors[:content].any?}] %>
-  </div>
-
-  <div class="my-5 flex items-center gap-2">
-    <%= form.label :active %>
-    <%= form.checkbox :active, class: ["block shadow-sm rounded-md border order-first h-5 w-5", {"border-gray-400 focus:outline-blue-600": cover_letter.errors[:active].none?, "border-red-400 focus:outline-red-600": cover_letter.errors[:active].any?}] %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

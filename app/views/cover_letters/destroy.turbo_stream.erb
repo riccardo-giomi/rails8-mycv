@@ -1,0 +1,10 @@
+<%= turbo_stream.replace @cover_letter do %>
+  <%= render partial: "abstract", locals: { cover_letter: @cover_letter, removed: true } %>
+
+  <script>
+   setTimeout(() => {
+     const node = document.getElementById("<%=dom_id(@cover_letter)%>");
+     if(node) node.parentNode.removeChild(node);
+   }, 1000);
+  </script>
+<% end %>

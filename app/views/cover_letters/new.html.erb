@@ -1,9 +1,7 @@
-<% content_for :title, "New cover letter" %>
+<% content_for :title, "New Cover Letter" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New cover letter</h1>
+<% content_for :nav_center do %>
+  <%= render partial: "layouts/controls/save_form" %>
+<% end %>
 
-  <%= render "form", cover_letter: @cover_letter %>
-
-  <%= link_to "Back to cover letters", cover_letters_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-</div>
+<%= render "form", cover_letter: @cover_letter %>

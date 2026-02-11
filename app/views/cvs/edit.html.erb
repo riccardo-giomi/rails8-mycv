@@ -18,7 +18,7 @@
     <div class="w-full mt-2 mb-14">
       <% if @cv.errors.any? %>
         <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-          <h2><%= pluralize(@cv.errors.count, "error") %> prohibited this cv from being saved:</h2>
+          <h2><%= pluralize(@cv.errors.count, "error") %> prohibited this CV from being saved:</h2>
 
           <ul class="list-disc ml-6">
             <% @cv.errors.each do |error| %>

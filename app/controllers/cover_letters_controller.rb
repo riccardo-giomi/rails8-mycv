@@ -1,59 +1,49 @@
 class CoverLettersController < ApplicationController
   before_action :set_cover_letter, only: %i[ show edit update destroy ]
 
-  # GET /cover_letters or /cover_letters.json
   def index
     @cover_letters = CoverLetter.all
+    @added = params[:added]&.to_i || nil
   end
 
-  # GET /cover_letters/1 or /cover_letters/1.json
   def show
   end
 
-  # GET /cover_letters/new
   def new
     @cover_letter = CoverLetter.new
   end
 
-  # GET /cover_letters/1/edit
   def edit
   end
 
-  # POST /cover_letters or /cover_letters.json
   def create
     @cover_letter = CoverLetter.new(cover_letter_params)
 
     respond_to do |format|
       if @cover_letter.save
-        format.html { redirect_to @cover_letter, notice: "Cover letter was successfully created." }
-        format.json { render :show, status: :created, location: @cover_letter }
+        format.html { redirect_to cover_letters_path(added: @cover_letter.id), notice: "Cover letter was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @cover_letter.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /cover_letters/1 or /cover_letters/1.json
   def update
     respond_to do |format|
       if @cover_letter.update(cover_letter_params)
-        format.html { redirect_to @cover_letter, notice: "Cover letter was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @cover_letter }
+        format.html { redirect_to edit_cover_letter_path(@cover_letter), notice: "Cover letter was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @cover_letter.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /cover_letters/1 or /cover_letters/1.json
   def destroy
     @cover_letter.destroy!
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to cover_letters_path, notice: "Cover letter was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
     end
   end
 

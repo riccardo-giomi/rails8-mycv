@@ -1,27 +1,28 @@
-<%# locals: (cover_letter:, change: nil)%>
+<%# locals: (cover_letter:, added: nil, removed: false)%>
 <%= turbo_frame_tag(dom_id(cover_letter), target: :_top) do %>
   <%
-    extra_class =  if change == :destroy
-                     "min-h-[205px] destroyed-highlight"
-                   elsif change == :create
-                     "created-highlight"
-                   else
-                     ""
-                   end
+    extra_class = if removed
+                    "min-h-[148px] destroyed-highlight"
+                  elsif added == cover_letter.id
+                    "created-highlight"
+                  else
+                    ""
+                  end
   %>
   <div class="cover-letter-abstract my-2 flex justify-between p-2 rounded-xl border-2 border-gray-400 shadow-lg <%= extra_class %>">
     <div>
       <p class="text-lg font-semibold text-black"><%= cover_letter.name %></p>
       <p class="font-medium text-gray-500">
         <% if cover_letter.company_url.present? %>
-          <a href="<%= cover_letter.company_url %>" target="_blank"><%= cover_letter.company_name %></a>
+          <a href="<%= cover_letter.company_url %>" target="_blank">
+            <%= cover_letter.company_name %></a>
         <% else %>
           <%= cover_letter.company_name %>
         <% end %>
       </p>
     </div>
 
-    <% if change != :destroy %>
+    <% unless removed %>
       <div class="flex flex-col justify-start content-stretch gap-2">
         <%= render "layouts/controls/cover_letter/show", cover_letter: %>
         <%= render "layouts/controls/cover_letter/edit", cover_letter: %>

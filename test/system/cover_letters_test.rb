@@ -11,6 +11,8 @@ class CoverLettersTest < ApplicationSystemTestCase
 
     assert_selector "h1", text: "Cover Letters"
 
+    assert_link "New Cover Letter"
+
     # turbo-frame
     within("#cover_letter_#{@cl_full.id}") do
       assert_selector "p", text: @cl_full.name
@@ -24,5 +26,12 @@ class CoverLettersTest < ApplicationSystemTestCase
       assert_selector "p", text: @cl_minimal.name
       assert_selector "p", text: @cl_minimal.company_name
     end
+  end
+
+  test "creating a new cover letter" do
+    visit cover_letters_url
+    click_on "New Cover Letter"
+
+    assert_selector "h1", text: "New Cover Letter"
   end
 end

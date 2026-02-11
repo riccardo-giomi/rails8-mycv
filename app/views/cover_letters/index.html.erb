@@ -9,7 +9,7 @@
     <% if @cover_letters.any? %>
       <% @cover_letters.each do |cover_letter| %>
         <% cache cover_letter do %>
-          <%= render "abstract", cover_letter: %>
+          <%= render "abstract", cover_letter:, added: @added %>
         <% end %>
       <% end %>
     <% end %>
