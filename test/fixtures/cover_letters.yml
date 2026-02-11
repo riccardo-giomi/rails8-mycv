@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  company_name: MyString
-  company_url: MyString
-  job_url: MyString
-  content: MyText
-  active: false
+  name: Cover Letter Name
+  company_name: Cover Letter Company Name
+  company_url: https://company-url.example.org
+  job_url: https://job-url.example.org
+  content: Cover Letter Content
+  active: true
 
 two:
-  name: MyString
-  company_name: MyString
-  company_url: MyString
-  job_url: MyString
-  content: MyText
-  active: false
+  name: Another Cover Letter
+  company_name: Another Company Name
+  company_url:
+  job_url:
+  content:
+  active: true
