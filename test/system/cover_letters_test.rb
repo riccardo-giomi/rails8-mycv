@@ -33,5 +33,19 @@ class CoverLettersTest < ApplicationSystemTestCase
     click_on "New Cover Letter"
 
     assert_selector "h1", text: "New Cover Letter"
+
+    fill_in "Company name", with: "New cover letter company name"
+
+    click_on "Save"
+
+    assert_text "Name can't be blank"
+    fill_in "Name", with: "New cover letter name"
+
+    click_on "Save"
+
+    assert_selector "h1.nav-title", text: "Cover Letters"
+    assert_text "Cover letter was successfully created."
+    assert_text "New cover letter name"
+    assert_text "New cover letter company name"
   end
 end

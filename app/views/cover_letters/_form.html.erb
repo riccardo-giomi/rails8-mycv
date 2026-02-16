@@ -1,20 +1,11 @@
 <%# locals: (cover_letter:)%>
+<% if cover_letter.errors.any? %>
+  <%=  render "layouts/errors", errors: cover_letter.errors %>
+<% end %>
+
 <%= form_with(model: cover_letter, class: "contents", data: { controller: "form", "form-target": "form" }) do |form| %>
   <div class="w-full">
     <div class="w-full mt-2 mb-14">
-      <% if cover_letter.errors.any? %>
-        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-          <h2><%= pluralize(cover_letter.errors.count, "error") %> prohibited this cover letter from being saved:</h2>
-
-          <ul class="list-disc ml-6">
-            <% cover_letter.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-
       <div class="cover-letter border-1 border-gray-400 p-2 m-0 mb-2 shadow-lg">
         <fieldset>
           <div class="my-3">

@@ -1,0 +1,10 @@
+<%# locals: (errors: )%>
+<div id="errors" class="w-full p-2 border-2 border-red-600 bg-red-200 text-red-800 font-medium rounded-md inline-block print:hidden">
+  <h2><%= pluralize(errors.count, "error") %> prohibited this cover letter from being saved:</h2>
+
+  <ul class="list-disc ml-6">
+    <% errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+</div>
