@@ -29,6 +29,12 @@ form.button_to {
          border-gray-400 focus:outline-blue-600;
 }
 
+.trix-content {
+  @apply block shadow-sm rounded-md border px-3 py-2 mt-2
+         w-full h-96
+         border-gray-400 focus:border-2 focus:border-blue-600;
+}
+
 .custom-input-field {
   @apply shadow-sm rounded-md border border-gray-400 focus:outline-blue-600;
 }

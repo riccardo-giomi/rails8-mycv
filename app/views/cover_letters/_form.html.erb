@@ -3,7 +3,7 @@
   <%=  render "layouts/errors", errors: cover_letter.errors %>
 <% end %>
 
-<%= form_with(model: cover_letter, class: "contents", data: { controller: "form", "form-target": "form" }) do |form| %>
+<%= form_with(model: cover_letter, class: "contents", data: { controller: "form trix", "form-target": "form" }) do |form| %>
   <div class="w-full">
     <div class="w-full mt-2 mb-14">
       <div class="cover-letter border-1 border-gray-400 p-2 m-0 mb-2 shadow-lg">
@@ -31,7 +31,8 @@
           <div class="my-3">
             <%= form.label :content, class: "small-label" %>
             <div class="border-2 border-dashed border-gray-400 p-2 my-2">
-              <%= form.textarea :content, class: "input-field h-auto", rows: 10 %>
+              <%#%= form.textarea :content, class: "input-field h-auto", rows: 10 %>
+              <%= form.rich_textarea :content, class: "trix-content" %>
             </div>
           </div>
 

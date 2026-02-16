@@ -2,6 +2,10 @@
  * Default Trix editor styles. See Action Text overwrites below.
 */
 
+.trix-button-group--file-tools {
+  display: hidden;
+}
+
 trix-editor {
   border: 1px solid #bbb;
   border-radius: 3px;
