@@ -4,4 +4,9 @@
   <%= render partial: "layouts/controls/save_form" %>
 <% end %>
 
+<% content_for :nav_right do %>
+  <%= render "layouts/controls/cover_letter/show", cover_letter: @cover_letter %>
+  <%= render "layouts/controls/cover_letter/preview", cover_letter: @cover_letter %>
+<% end %>
+
 <%= render "form", cover_letter: @cover_letter %>

@@ -1,15 +1,42 @@
-<% content_for :title, "Showing cover letter" %>
+<% content_for :title, "Cover letter" %>
 
-<div class="md:w-2/3 w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<% content_for :nav_left do %>
+  <%= render "layouts/controls/cover_letter/edit", cover_letter: @cover_letter %>
+<% end %>
 
-  <h1 class="font-bold text-4xl">Showing cover letter</h1>
+<% content_for :nav_right do %>
+  <%= render "layouts/controls/download_json", model: @cover_letter %>
+  <%= render "layouts/controls/print" %>
+  <%= render "layouts/controls/cover_letter/preview", cover_letter: @cover_letter %>
+<% end %>
 
-  <%= render @cover_letter %>
+<div id="<%= dom_id @cover_letter %>" class="my-2 px-2 py-4 space-y-4 rounded-xl border-2 border-gray-400 shadow-lg print:hidden">
+  <div>
+    <strong class="font-bold">ID:</strong>
+    <%= @cover_letter.id %>
+  </div>
+  <div>
+    <strong class="font-bold">Name:</strong>
+    <%= @cover_letter.name %>
+  </div>
+  <div>
+    <strong class="font-bold">Company name:</strong>
+    <%= @cover_letter.company_name %>
+  </div>
+  <div>
+    <strong class="font-bold">Company url:</strong>
+    <%= @cover_letter.company_url %>
+  </div>
+  <div>
+    <strong class="font-bold">Job url:</strong>
+    <%= @cover_letter.job_url %>
+  </div>
+  <div>
+    <strong class="font-bold">Active:</strong>
+    <%= @cover_letter.active? ? "Yes" : "No" %>
+  </div>
+</div>
 
-  <%= link_to "Edit this cover letter", edit_cover_letter_path(@cover_letter), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to cover letters", cover_letters_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this cover letter", @cover_letter, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+<div class="print:block">
+  <%= @cover_letter.content %>
 </div>

@@ -79,10 +79,6 @@ class CvsController < ApplicationController
 
   private
 
-  def choose_layout_for_current_action
-    action_name == "preview" ? "preview" : "application"
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_cv
     @cv = Cv.find(params.expect(:id))

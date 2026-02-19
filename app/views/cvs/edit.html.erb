@@ -1,7 +1,7 @@
 <% content_for :title, "Edit CV" %>
 
 <% content_for :nav_left do %>
-  <%= render partial: "layouts/controls/show", locals: { cv: @cv } %>
+  <%= render "layouts/controls/show", cv: @cv %>
 <% end %>
 
 <% content_for :nav_center do %>
@@ -9,8 +9,8 @@
 <% end %>
 
 <% content_for :nav_right do %>
-  <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
-  <%= render partial: "layouts/controls/preview", locals: { cv: @cv } %>
+  <%= render "layouts/controls/download_json", model: @cv %>
+  <%= render "layouts/controls/preview", cv: @cv %>
 <% end %>
 
 <%= form_with(model: @cv, class: "contents", data: { controller: "form", "form-target": "form" }) do |form| %>

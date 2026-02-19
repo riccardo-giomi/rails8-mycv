@@ -18,7 +18,7 @@
   }
 }
 .created-highlight {
-  animation: created-highlight 1s;
+  animation: created-highlight 500ms;
 }
 
 @keyframes destroyed-highlight {
@@ -35,6 +35,6 @@
   }
 }
 .destroyed-highlight {
-  animation: destroyed-highlight 1s;
+  animation: destroyed-highlight 500ms;
   animation-fill-mode: forwards;
 }

@@ -68,3 +68,11 @@ form.button_to {
 .pill svg {
   @apply inline-block align-middle;
 }
+
+#preview .trix-content {
+  @apply mt-12 border-none shadow-none print:mt-0;
+}
+
+.trix-content {
+  @apply print:border-none print:shadow-none;
+}

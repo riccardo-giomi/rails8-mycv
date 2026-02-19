@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :cover_letters
+  resources :cover_letters do
+    get :preview, on: :member
+  end
+
   constraints(format: "html") do
     resources :cvs, except: [ :new ] do
       get :preview, on: :member

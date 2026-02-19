@@ -11,6 +11,9 @@
   %>
   <div class="cover-letter-abstract my-2 flex justify-between p-2 rounded-xl border-2 border-gray-400 shadow-lg <%= extra_class %>">
     <div>
+      <p class="text-lg font-semibold text-black">
+        (ID: <%= cover_letter.id.to_s %>)
+      </p>
       <p class="text-lg font-semibold text-black"><%= cover_letter.name %></p>
       <p class="font-medium text-gray-500">
         <% if cover_letter.company_url.present? %>

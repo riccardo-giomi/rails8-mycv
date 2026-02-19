@@ -1,5 +1,7 @@
 class CoverLettersController < ApplicationController
-  before_action :set_cover_letter, only: %i[ show edit update destroy ]
+  layout :choose_layout_for_current_action
+
+  before_action :set_cover_letter, only: %i[ show preview edit update destroy ]
 
   def index
     @cover_letters = CoverLetter.all
@@ -7,14 +9,23 @@ class CoverLettersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json do
+        send_data @cover_letter.to_json,
+                  filename: "cover_letter.#{@cover_letter.id}.json",
+                  content_type: "application/json"
+      end
+    end
   end
+
+  def preview; end
 
   def new
     @cover_letter = CoverLetter.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @cover_letter = CoverLetter.new(cover_letter_params)

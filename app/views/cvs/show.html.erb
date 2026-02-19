@@ -1,13 +1,15 @@
 <% content_for :title, @cv.base_filename %>
-<% content_for :page_title, "CV" %>
 
 <% content_for :nav_left do %>
   <%= render partial: "layouts/controls/edit", locals: { cv: @cv } %>
 <% end %>
 
 <% content_for :nav_right do %>
-  <%= render partial: "layouts/controls/download_json", locals: { cv: @cv } %>
-  <%= render partial: "layouts/controls/print", locals: { cv: @cv } %>
+  <%= render "layouts/controls/download_json", model: @cv %>
+  <%= render "layouts/controls/print" %>
+  <span class="js-control">
+    <%= render "layouts/controls/preview", cv: @cv %>
+  </span>
 <% end %>
 
 <%= turbo_stream_from @cv %>
