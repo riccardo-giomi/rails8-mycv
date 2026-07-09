@@ -1,6 +1,10 @@
 class Cv < ApplicationRecord
   has_one_attached :photo
 
+  def remove_photo
+    photo.purge if photo.attached?
+  end
+
   has_one :layout, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :layout, update_only: true
 

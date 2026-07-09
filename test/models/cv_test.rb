@@ -19,6 +19,26 @@ class CvTest < ActiveSupport::TestCase
     assert cv.photo.attached?
   end
 
+  test "#remove_photo purges an attached photo" do
+    cv = cvs(:one)
+    cv.photo.attach(
+      io: File.open(file_fixture("photo.png")),
+      filename: "photo.png",
+      content_type: "image/png"
+    )
+
+    cv.remove_photo
+
+    assert_not cv.photo.attached?
+  end
+
+  test "#remove_photo is a no-op when there is no photo" do
+    cv = cvs(:one)
+
+    assert_nothing_raised { cv.remove_photo }
+    assert_not cv.photo.attached?
+  end
+
   test "#create_layout builds an empty Layout record for the CV" do
     cv = Cv.new
     cv.create_layout

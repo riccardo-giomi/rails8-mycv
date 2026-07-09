@@ -44,6 +44,8 @@ class CvsController < ApplicationController
   def edit; end
 
   def update
+    @cv.remove_photo if params[:remove_photo]
+
     @cv.delete_contact(params[:delete_contact]) if params[:delete_contact]
     @cv.add_contact if params[:add_contact]
 
