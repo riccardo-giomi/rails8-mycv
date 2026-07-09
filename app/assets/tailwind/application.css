@@ -35,6 +35,15 @@ form.button_to {
          border-gray-400 focus:border-2 focus:border-blue-600;
 }
 
+/* The editable <trix-editor> needs its own overflow/resize handling — a plain
+   div (used for read-only display elsewhere) can't be resized and doesn't need
+   to scroll, so this is scoped to the custom element itself, not .trix-content
+   generally. Without this, content taller than h-96 above visually overflows
+   the box instead of scrolling, and there's no way to resize the box. */
+trix-editor.trix-content {
+  @apply overflow-y-auto resize-y;
+}
+
 .custom-input-field {
   @apply shadow-sm rounded-md border border-gray-400 focus:outline-blue-600;
 }
