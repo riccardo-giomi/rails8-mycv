@@ -1,6 +1,12 @@
 <%= turbo_frame_tag(dom_id(cv)) do %>
   <div class="header pl-2 rounded-lg border-2 border-gray-400">
     <div class="flex gap-4 justify-between">
+      <% if cv.photo.attached? %>
+        <div class="shrink-0 mt-2 ml-2">
+          <%= image_tag cv.photo, class: "w-24 h-24 rounded-full object-cover border-2 border-gray-400" %>
+        </div>
+      <% end %>
+
       <div class="flex-1">
         <h1 class="name mt-2 font-bold text-3xl">
           <%= cv.name %>
@@ -24,12 +30,6 @@
           <% end %>
         </div>
       </div>
-
-      <% if cv.photo.attached? %>
-        <div class="shrink-0 mt-2 mr-2">
-          <%= image_tag cv.photo, class: "w-24 h-24 rounded-full object-cover border-2 border-gray-400" %>
-        </div>
-      <% end %>
     </div>
 
   </div>
