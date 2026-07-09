@@ -53,12 +53,23 @@
 
       <div class="curriculum border-2 border-dashed border-gray-500 p-2 m-0">
         <div class="header p-1 rounded-lg border-2 border-gray-400">
-          <div class="my-1">
-            <%= form.text_field :name, class: "input-field font-bold text-xl md:text-2xl md:text-3xl", placeholder: "Name" %>
-          </div>
+          <div class="flex gap-4 items-start">
+            <div class="flex-1">
+              <div class="my-1">
+                <%= form.text_field :name, class: "input-field font-bold text-xl md:text-2xl md:text-3xl", placeholder: "Name" %>
+              </div>
 
-          <div class="my-1">
-            <%= form.text_field :intro_line, class: "input-field font-bold text-gray-500 text-lg md:text-xl md:text-2xl", placeholder: 'Specialization or one-line intro (e.g. "developer")' %>
+              <div class="my-1">
+                <%= form.text_field :intro_line, class: "input-field font-bold text-gray-500 text-lg md:text-xl md:text-2xl", placeholder: 'Specialization or one-line intro (e.g. "developer")' %>
+              </div>
+            </div>
+
+            <div class="shrink-0 flex flex-col items-center gap-1 pt-1">
+              <% if @cv.photo.attached? %>
+                <%= image_tag @cv.photo, class: "w-20 h-20 rounded-full object-cover border-2 border-gray-400" %>
+              <% end %>
+              <%= form.file_field :photo, class: "small-input-field text-sm", accept: "image/*" %>
+            </div>
           </div>
 
           <hr class="mt-2">

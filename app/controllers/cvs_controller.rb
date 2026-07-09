@@ -97,6 +97,7 @@ class CvsController < ApplicationController
         :email_address,
         :intro_line,
         :intro_text,
+        :photo,
         :base_filename,
         :language,
         :notes,

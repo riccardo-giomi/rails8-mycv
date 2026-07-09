@@ -1,23 +1,33 @@
 <%= turbo_frame_tag(dom_id(cv)) do %>
   <div class="header pl-2 rounded-lg border-2 border-gray-400">
-    <h1 class="name mt-2 font-bold text-3xl">
-      <%= cv.name %>
-    </h1>
+    <div class="flex gap-4 justify-between">
+      <div class="flex-1">
+        <h1 class="name mt-2 font-bold text-3xl">
+          <%= cv.name %>
+        </h1>
 
-    <h2 class="specialization mt-1 font-bold text-gray-500 text-2xl">
-      <%= cv.intro_line %>
-    </h2>
+        <h2 class="specialization mt-1 font-bold text-gray-500 text-2xl">
+          <%= cv.intro_line %>
+        </h2>
 
-    <div class="contacts my-2 text-gray-500 font-medium">
-      <div class="w-full flex gap-2 inline-block align-middle">
-        <%= render contact_icon_partial(:email) %>
-        <span><%= cv.email_address %></span>
+        <div class="contacts my-2 text-gray-500 font-medium">
+          <div class="w-full flex gap-2 inline-block align-middle">
+            <%= render contact_icon_partial(:email) %>
+            <span><%= cv.email_address %></span>
+          </div>
+
+          <% cv.contacts.each do |contact| %>
+            <div class="w-full flex gap-2 inline-block align-middle">
+              <%= render contact_icon_partial(contact.contact_type) %>
+              <span><%= contact.value %></span>
+            </div>
+          <% end %>
+        </div>
       </div>
 
-      <% cv.contacts.each do |contact| %>
-        <div class="w-full flex gap-2 inline-block align-middle">
-          <%= render contact_icon_partial(contact.contact_type) %>
-          <span><%= contact.value %></span>
+      <% if cv.photo.attached? %>
+        <div class="shrink-0 mt-2 mr-2">
+          <%= image_tag cv.photo, class: "w-24 h-24 rounded-full object-cover border-2 border-gray-400" %>
         </div>
       <% end %>
     </div>

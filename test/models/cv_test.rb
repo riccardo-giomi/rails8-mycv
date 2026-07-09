@@ -7,6 +7,18 @@ class CvTest < ActiveSupport::TestCase
     assert cv.valid?
   end
 
+  test "can attach and read back a photo" do
+    cv = cvs(:one)
+
+    cv.photo.attach(
+      io: File.open(file_fixture("photo.png")),
+      filename: "photo.png",
+      content_type: "image/png"
+    )
+
+    assert cv.photo.attached?
+  end
+
   test "#create_layout builds an empty Layout record for the CV" do
     cv = Cv.new
     cv.create_layout
