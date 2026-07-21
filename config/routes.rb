@@ -11,6 +11,10 @@ Rails.application.routes.draw do
       resources :work_experiences, only: [] do
         patch :reorder, on: :collection
       end
+
+      resources :contacts, only: [] do
+        patch :reorder, on: :collection
+      end
     end
   end
 
