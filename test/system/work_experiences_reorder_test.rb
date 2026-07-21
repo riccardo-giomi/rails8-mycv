@@ -58,4 +58,27 @@ class WorkExperiencesReorderTest < ApplicationSystemTestCase
 
     assert_equal [ @second.id, @first.id ], @cv.reload.work_experiences.pluck(:id)
   end
+
+  test "clicking move down updates which arrows are visible" do
+    visit edit_cv_url(@cv)
+
+    assert_no_selector "#work_experience_#{@first.id} #move-work-experience-up-button", visible: :visible
+    assert_selector "#work_experience_#{@second.id} #move-work-experience-up-button", visible: :visible
+    assert_no_selector "#work_experience_#{@second.id} #move-work-experience-down-button", visible: :visible
+
+    find("#work_experience_#{@first.id} #move-work-experience-down-button").click
+
+    assert_selector "[data-controller='reorder'][data-reorder-complete], [data-controller='reorder'][data-reorder-error]"
+
+    container = find("[data-controller='reorder']")
+    if (error = container["data-reorder-error"])
+      raise "reorder request failed: #{error}"
+    end
+
+    assert_equal [ @second.id, @first.id ], @cv.reload.work_experiences.pluck(:id)
+
+    assert_no_selector "#work_experience_#{@second.id} #move-work-experience-up-button", visible: :visible
+    assert_selector "#work_experience_#{@first.id} #move-work-experience-up-button", visible: :visible
+    assert_no_selector "#work_experience_#{@first.id} #move-work-experience-down-button", visible: :visible
+  end
 end
