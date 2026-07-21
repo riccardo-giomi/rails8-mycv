@@ -7,14 +7,14 @@ class ContactsReorderTest < ApplicationSystemTestCase
     @second = contacts(:two)
   end
 
-  test "clicking move down persists the new order and updates arrow visibility" do
+  test "clicking move down persists the new order and updates which arrows are disabled" do
     visit edit_cv_url(@cv)
 
     reorder_container_selector = "[data-reorder-url-value='#{reorder_cv_contacts_path(@cv)}']"
 
-    assert_no_selector "#contact_#{@first.id} #move-contact-up-button", visible: :visible
-    assert_selector "#contact_#{@second.id} #move-contact-up-button", visible: :visible
-    assert_no_selector "#contact_#{@second.id} #move-contact-down-button", visible: :visible
+    assert_selector "#contact_#{@first.id} #move-contact-up-button:disabled"
+    assert_selector "#contact_#{@second.id} #move-contact-up-button:not(:disabled)"
+    assert_selector "#contact_#{@second.id} #move-contact-down-button:disabled"
 
     find("#contact_#{@first.id} #move-contact-down-button").click
 
@@ -27,8 +27,8 @@ class ContactsReorderTest < ApplicationSystemTestCase
 
     assert_equal [ @second.id, @first.id ], @cv.reload.contacts.pluck(:id)
 
-    assert_no_selector "#contact_#{@second.id} #move-contact-up-button", visible: :visible
-    assert_selector "#contact_#{@first.id} #move-contact-up-button", visible: :visible
-    assert_no_selector "#contact_#{@first.id} #move-contact-down-button", visible: :visible
+    assert_selector "#contact_#{@second.id} #move-contact-up-button:disabled"
+    assert_selector "#contact_#{@first.id} #move-contact-up-button:not(:disabled)"
+    assert_selector "#contact_#{@first.id} #move-contact-down-button:disabled"
   end
 end

@@ -88,10 +88,10 @@ export default class extends Controller {
     const last = items[items.length - 1]
 
     this.upButtonTargets.forEach((button) => {
-      button.style.display = button.closest("[data-reorder-target='item']") === first ? "none" : ""
+      button.disabled = button.closest("[data-reorder-target='item']") === first
     })
     this.downButtonTargets.forEach((button) => {
-      button.style.display = button.closest("[data-reorder-target='item']") === last ? "none" : ""
+      button.disabled = button.closest("[data-reorder-target='item']") === last
     })
   }
 
