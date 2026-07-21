@@ -35,7 +35,6 @@ form.button_to {
 
 .trix-content {
   @apply block shadow-sm rounded-md border px-3 py-2 mt-2
-         w-full h-96
          border-gray-400 focus:border-2 focus:border-blue-600;
 }
 
@@ -45,7 +44,7 @@ form.button_to {
    generally. Without this, content taller than h-96 above visually overflows
    the box instead of scrolling, and there's no way to resize the box. */
 trix-editor.trix-content {
-  @apply overflow-y-auto resize-y;
+  @apply overflow-y-auto resize-y w-full h-96;
 }
 
 .custom-input-field {
