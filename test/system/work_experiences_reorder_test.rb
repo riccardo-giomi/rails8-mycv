@@ -5,6 +5,7 @@ class WorkExperiencesReorderTest < ApplicationSystemTestCase
     @cv = cvs(:two)
     @first = work_experiences(:one)
     @second = work_experiences(:two)
+    @reorder_container_selector = "[data-reorder-url-value='#{reorder_cv_work_experiences_path(@cv)}']"
   end
 
   test "dragging a work experience above another persists the new order" do
@@ -23,9 +24,9 @@ class WorkExperiencesReorderTest < ApplicationSystemTestCase
       target.dispatchEvent(new DragEvent("drop", { bubbles: true, dataTransfer }))
     JS
 
-    assert_selector "[data-controller='reorder'][data-reorder-complete], [data-controller='reorder'][data-reorder-error]"
+    assert_selector "#{@reorder_container_selector}[data-reorder-complete], #{@reorder_container_selector}[data-reorder-error]"
 
-    container = find("[data-controller='reorder']")
+    container = find(@reorder_container_selector)
     if (error = container["data-reorder-error"])
       raise "reorder request failed: #{error}"
     end
@@ -49,9 +50,9 @@ class WorkExperiencesReorderTest < ApplicationSystemTestCase
     target.dispatchEvent(new DragEvent("drop", { bubbles: true, dataTransfer }))
     JS
 
-    assert_selector "[data-controller='reorder'][data-reorder-complete], [data-controller='reorder'][data-reorder-error]"
+    assert_selector "#{@reorder_container_selector}[data-reorder-complete], #{@reorder_container_selector}[data-reorder-error]"
 
-    container = find("[data-controller='reorder']")
+    container = find(@reorder_container_selector)
     if (error = container["data-reorder-error"])
       raise "reorder request failed: #{error}"
     end
@@ -68,9 +69,9 @@ class WorkExperiencesReorderTest < ApplicationSystemTestCase
 
     find("#work_experience_#{@first.id} #move-work-experience-down-button").click
 
-    assert_selector "[data-controller='reorder'][data-reorder-complete], [data-controller='reorder'][data-reorder-error]"
+    assert_selector "#{@reorder_container_selector}[data-reorder-complete], #{@reorder_container_selector}[data-reorder-error]"
 
-    container = find("[data-controller='reorder']")
+    container = find(@reorder_container_selector)
     if (error = container["data-reorder-error"])
       raise "reorder request failed: #{error}"
     end
