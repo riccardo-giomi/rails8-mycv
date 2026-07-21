@@ -1,4 +1,4 @@
-<div class="mt-2"
+<div class="mt-2 border-2 border-gray-400 rounded-lg p-2 print:border-0 print:p-0 print:mt-0"
   <% if subform.object.persisted? %>
     id = "<%= dom_id(subform.object) %>"
      data-reorder-target="item"
@@ -6,9 +6,13 @@
   <% end %>>
 
   <% if subform.object.persisted? %>
-    <div class="cursor-grab select-none w-fit text-gray-400"
+    <div class="flex justify-center cursor-grab select-none text-gray-400 hover:text-gray-600 print:hidden"
          draggable="true"
-         data-action="dragstart->reorder#dragStart dragend->reorder#dragEnd">⠿ drag to reorder</div>
+         data-action="dragstart->reorder#dragStart dragend->reorder#dragEnd">
+      <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </div>
   <% end %>
 
   <div class="w-full">
