@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       resources :contacts, only: [] do
         patch :reorder, on: :collection
       end
+
+      resources :education_items, only: [] do
+        patch :reorder, on: :collection
+      end
     end
   end
 
