@@ -32,4 +32,30 @@ class WorkExperiencesReorderTest < ApplicationSystemTestCase
 
     assert_equal [ @second.id, @first.id ], @cv.reload.work_experiences.pluck(:id)
   end
+
+  test "dragging a work experience below another persists the new order" do
+    visit edit_cv_url(@cv)
+
+    handle = find("#work_experience_#{@first.id} [data-action*='dragstart']")
+    target = find("#work_experience_#{@second.id}")
+
+    page.execute_script(<<~JS, handle, target)
+    const [ handle, target ] = arguments
+    const dataTransfer = new DataTransfer()
+    const rect = target.getBoundingClientRect()
+
+    handle.dispatchEvent(new DragEvent("dragstart", { bubbles: true, dataTransfer }))
+    target.dispatchEvent(new DragEvent("dragover", { bubbles: true, cancelable: true, dataTransfer, clientY: rect.bottom }))
+    target.dispatchEvent(new DragEvent("drop", { bubbles: true, dataTransfer }))
+    JS
+
+    assert_selector "[data-controller='reorder'][data-reorder-complete], [data-controller='reorder'][data-reorder-error]"
+
+    container = find("[data-controller='reorder']")
+    if (error = container["data-reorder-error"])
+      raise "reorder request failed: #{error}"
+    end
+
+    assert_equal [ @second.id, @first.id ], @cv.reload.work_experiences.pluck(:id)
+  end
 end

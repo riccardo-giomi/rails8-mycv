@@ -199,7 +199,7 @@
             <% work_experiences_count = @cv.work_experiences.count %>
             <div data-controller="reorder"
                  data-reorder-url-value="<%= reorder_cv_work_experiences_path(@cv) %>"
-                 data-action="dragover->reorder#dragOver drop->reorder#drop">
+                 data-action="dragover@window->reorder#dragOver drop@window->reorder#drop">
               <%= form.fields_for :work_experiences do |subform| %>
                 <%= render "work_experience", form:, subform:, index: subform.options[:child_index], count: work_experiences_count %>
               <% end %>
