@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["item"]
+  static targets = ["item", "upButton", "downButton"]
   static values = { url: String }
 
   dragStart(event) {
@@ -58,7 +58,46 @@ export default class extends Controller {
     this.persistOrder()
   }
 
+  moveUp(event) {
+    event.preventDefault()
+    this.move(event.target.closest("[data-reorder-target='item']"), -1)
+  }
+
+  moveDown(event) {
+    event.preventDefault()
+    this.move(event.target.closest("[data-reorder-target='item']"), 1)
+  }
+
+  move(item, direction) {
+    const items = this.itemTargets
+    const swapWith = items[items.indexOf(item) + direction]
+    if (!swapWith) return
+
+    if (direction < 0) {
+      item.parentNode.insertBefore(item, swapWith)
+    } else {
+      item.parentNode.insertBefore(swapWith, item)
+    }
+
+    this.persistOrder()
+  }
+
+  refreshButtonVisibility() {
+    const items = this.itemTargets
+    const first = items[0]
+    const last = items[items.length - 1]
+
+    this.upButtonTargets.forEach((button) => {
+      button.style.display = button.closest("[data-reorder-target='item']") === first ? "none" : ""
+    })
+    this.downButtonTargets.forEach((button) => {
+      button.style.display = button.closest("[data-reorder-target='item']") === last ? "none" : ""
+    })
+  }
+
   persistOrder() {
+    this.refreshButtonVisibility()
+
     const headers = { "Content-type": "application/json" }
     // crsf-token can be absent during tests depending on configuration.
     const csrfToken = document.querySelector("meta[name='csrf-token']")?.content
