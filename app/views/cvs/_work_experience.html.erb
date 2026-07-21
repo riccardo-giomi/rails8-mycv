@@ -1,4 +1,16 @@
-<div class="mt-2">
+<div class="mt-2"
+  <% if subform.object.persisted? %>
+    id = "<%= dom_id(subform.object) %>"
+     data-reorder-target="item"
+     data-id="<%= subform.object.id%>"
+  <% end %>>
+
+  <% if subform.object.persisted? %>
+    <div class="cursor-grab select-none w-fit text-gray-400"
+         draggable="true"
+         data-action="dragstart->reorder#dragStart dragend->reorder#dragEnd">⠿ drag to reorder</div>
+  <% end %>
+
   <div class="w-full">
     <%= subform.text_field :title, class: "input-field font-bold font-bold text-xl", placeholder: "Position/title" %>
     <%= subform.text_field :entity, class: "input-field w-full font-bold text-lg text-gray-500", placeholder: "Company/Entity" %>
