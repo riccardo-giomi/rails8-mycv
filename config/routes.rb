@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :cvs, except: [ :new ] do
       get :preview, on: :member
       post :copy, on: :member
+
+      resources :work_experiences, only: [] do
+        patch :reorder, on: :collection
+      end
     end
   end
 
